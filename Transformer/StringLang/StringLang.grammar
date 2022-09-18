@@ -1,0 +1,28 @@
+﻿using Microsoft.ProgramSynthesis.Utils;
+using EqFix.Lib.Transformer.StringLang;
+using semantics EqFix.Lib.Transformer.StringLang.Semantics;
+using learners EqFix.Lib.Transformer.StringLang.WitnessFunctions;
+
+language StringLang;
+
+@complete feature double Score = EqFix.Lib.Transformer.StringLang.RankingScore;
+
+@input string[] v;
+
+@start string program := f | Concat(f, program);
+
+string f := ConstStr(s) 
+          | JustChooseInput(v, i)
+          | @id['LetSubStr'] let x : string = ChooseInput(v, i) in SubStr(x, posPair);
+
+Record<int?, int?>? posPair := PosPair(pos, pos) = Pair(pos, pos);
+
+int? pos := AbsPos(x, k) | RelPos(x, t, indexPair);
+
+Record<int, int>? indexPair := IndexPair(j, k) = Pair(j, k);
+
+int i;
+int j;
+int k;
+string s;
+Token t;

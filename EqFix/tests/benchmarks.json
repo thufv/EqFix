@@ -1,0 +1,79 @@
+[
+    {
+        "id": -1,
+        "examples":
+        [
+            {
+                "eq": "$\\{1,2,3}$",
+                "err": "Extra }, or forgotten $.",
+                "fix": "$\\{1,2,3\\}$"
+            },
+            {
+                "eq": "$\\{45,72,97}$",
+                "err": "Extra }, or forgotten $.",
+                "fix": "$\\{45,72,97\\}$"
+            },
+            {
+                "eq": "$\\{a,b,c}$",
+                "err": "Extra }, or forgotten $.",
+                "fix": "$\\{a,b,c\\}$"
+            },
+            {
+                "eq": "$\\{a+b,b+c,x+y,K}$",
+                "err": "Extra }, or forgotten $.",
+                "fix": "$\\{a+b,b+c,x+y,K\\}$"
+            },
+            {
+                "eq": "$S=\\{xy,yz,zw}$",
+                "err": "Extra }, or forgotten $.",
+                "fix": "$S=\\{xy,yz,zw\\}$"
+            }
+        ]
+    },
+    {
+        "id": 11,
+        "examples": [
+            {
+                "eq": "$${1,2,3}",
+                "err": "Missing $ inserted.",
+                "fix": "$${1,2,3}$$"
+            },
+            {
+                "eq": "$${4,5,6}",
+                "err": "Missing $ inserted.",
+                "fix": "$${4,5,6}$$"
+            },
+            {
+                "eq": "$${a,b,c}",
+                "err": "Missing $ inserted.",
+                "fix": "$${a,b,c}$$"
+            },
+            {
+                "eq": "$${m,n,p}",
+                "err": "Missing $ inserted.",
+                "fix": "$${m,n,p}$$"
+            },
+            {
+                "eq": "$${x,y,z}",
+                "err": "Missing $ inserted.",
+                "fix": "$${x,y,z}$$"
+            }
+        ]
+    },
+    {
+        "id": 2,
+        "examples":
+        [
+            {
+                "eq": "$\\texttt{SCons(s_1, VP)}$",
+                "err": "Missing $ inserted.",
+                "fix": "$\\texttt{SCons}(s_1, VP)$"
+            },
+            {
+                "eq": "$\\inference{}$",
+                "err": "Extra }, or forgotten $.",
+                "fix": "$\\inference{}{}$"
+            }
+        ]
+    }
+]

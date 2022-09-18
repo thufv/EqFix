@@ -1,0 +1,2672 @@
+[
+  {
+    "id": 1,
+    "examples": [
+      {
+        "eq": "$x^10$",
+        "err": "10 is a superscript.",
+        "fix": "$x^{10}$"
+      },
+      {
+        "eq": "$z^-5$",
+        "err": "-5 is a superscript.",
+        "fix": "$z^{-5}$"
+      },
+      {
+        "eq": "$y^100$",
+        "err": "100 is a superscript.",
+        "fix": "$y^{100}$"
+      },
+      {
+        "eq": "$1+e^-1$",
+        "err": "-1 is a superscript.",
+        "fix": "$1+e^{-1}$"
+      },
+      {
+        "eq": "$y=e^-2+e$",
+        "err": "-2 is a superscript.",
+        "fix": "$y=e^{-2}+e$"
+      }
+    ]
+  },
+  {
+    "id": 2,
+    "examples": [
+      {
+        "eq": "$x_10$",
+        "err": "10 is a subscript.",
+        "fix": "$x_{10}$"
+      },
+      {
+        "eq": "$x_100$",
+        "err": "100 is a subscript.",
+        "fix": "$x_{100}$"
+      },
+      {
+        "eq": "$y_p+q$",
+        "err": "p+q is a subscript.",
+        "fix": "$y_{p+q}$"
+      },
+      {
+        "eq": "$m+n+y_p+q$",
+        "err": "p+q is a subscript.",
+        "fix": "$m+n+y_{p+q}$"
+      },
+      {
+        "eq": "$(m+n)_p+q$",
+        "err": "p+q is a subscript.",
+        "fix": "$(m+n)_{p+q}$"
+      }
+    ]
+  },
+  {
+    "id": 3,
+    "examples": [
+      {
+        "eq": "$x^^{1}$",
+        "err": "Extra }, or forgotten $.",
+        "fix": "$x^{1}$"
+      },
+      {
+        "eq": "$x^^{a+b}$",
+        "err": "Extra }, or forgotten $.",
+        "fix": "$x^{a+b}$"
+      },
+      {
+        "eq": "$x^^{100}$",
+        "err": "Extra }, or forgotten $.",
+        "fix": "$x^{100}$"
+      },
+      {
+        "eq": "$a^^{\\phi}$",
+        "err": "Extra }, or forgotten $.",
+        "fix": "$a^{\\phi}$"
+      },
+      {
+        "eq": "$A^^{m+n}+x$",
+        "err": "Extra }, or forgotten $.",
+        "fix": "$A^{m+n}+x$"
+      }
+    ]
+  },
+  {
+    "id": 4,
+    "examples": [
+      {
+        "eq": "$x__{1}$",
+        "err": "Missing { inserted.",
+        "fix": "$x_{1}$"
+      },
+      {
+        "eq": "$x__{10}$",
+        "err": "Missing { inserted.",
+        "fix": "$x_{10}$"
+      },
+      {
+        "eq": "$x__{a+b}$",
+        "err": "Missing { inserted.",
+        "fix": "$x_{a+b}$"
+      },
+      {
+        "eq": "$\\theta__{b}$",
+        "err": "Missing { inserted.",
+        "fix": "$\\theta_{b}$"
+      },
+      {
+        "eq": "$A__{m+n}+a^{b}$",
+        "err": "Missing { inserted.",
+        "fix": "$A_{m+n}+a^{b}$"
+      }
+    ]
+  },
+  {
+    "id": 5,
+    "examples": [
+      {
+        "eq": "$a=b++c$",
+        "err": "++ only serve for one operand.",
+        "fix": "$a=b+c$"
+      },
+      {
+        "eq": "$x=y++z$",
+        "err": "++ only serve for one operand.",
+        "fix": "$x=y+z$"
+      },
+      {
+        "eq": "$n=p++q+r$",
+        "err": "++ only serve for one operand.",
+        "fix": "$n=p+q+r$"
+      },
+      {
+        "eq": "$\\vec{b}=\\vec{c}++\\vec{d}$",
+        "err": "++ only serve for one operand.",
+        "fix": "$\\vec{b}=\\vec{c}+\\vec{d}$"
+      },
+      {
+        "eq": "$\\vec{a}=\\vec{b}+\\vec{c}++\\vec{d}+\\vec{e}+\\vec{f}+\\vec{g}$",
+        "err": "++ only serve for one operand.",
+        "fix": "$\\vec{a}=\\vec{b}+\\vec{c}+\\vec{d}+\\vec{e}+\\vec{f}+\\vec{g}$"
+      }
+    ]
+  },
+  {
+    "id": 6,
+    "examples": [
+      {
+        "eq": "$a=b--c$",
+        "err": "-- only serve for one operand.",
+        "fix": "$a=b-c$"
+      },
+      {
+        "eq": "$x=y--z$",
+        "err": "-- only serve for one operand.",
+        "fix": "$x=y-z$"
+      },
+      {
+        "eq": "$\\vec{b}=\\vec{c}--\\vec{d}$",
+        "err": "-- only serve for one operand.",
+        "fix": "$\\vec{b}=\\vec{c}-\\vec{d}$"
+      },
+      {
+        "eq": "$\\vec{a}=\\vec{b}+\\vec{c}--\\vec{d}$",
+        "err": "-- only serve for one operand.",
+        "fix": "$\\vec{a}=\\vec{b}+\\vec{c}-\\vec{d}$"
+      },
+      {
+        "eq": "$\\vec{a}=\\vec{b}+\\vec{c}--\\vec{d}+\\vec{e}-\\vec{f}+\\vec{g}$",
+        "err": "-- only serve for one operand.",
+        "fix": "$\\vec{a}=\\vec{b}+\\vec{c}-\\vec{d}+\\vec{e}-\\vec{f}+\\vec{g}$"
+      }
+    ]
+  },
+  {
+    "id": 7,
+    "examples": [
+      {
+        "eq": "${1,2,3$",
+        "err": "Missing } inserted.",
+        "fix": "${1,2,3}$"
+      },
+      {
+        "eq": "${4,5,6$",
+        "err": "Missing } inserted.",
+        "fix": "${4,5,6}$"
+      },
+      {
+        "eq": "${a,b,c$",
+        "err": "Missing } inserted.",
+        "fix": "${a,b,c}$"
+      },
+      {
+        "eq": "${m,n,p$",
+        "err": "Missing } inserted.",
+        "fix": "${m,n,p}$"
+      },
+      {
+        "eq": "${x,y,z,1,2$",
+        "err": "Missing } inserted.",
+        "fix": "${x,y,z,1,2}$"
+      }
+    ]
+  },
+  {
+    "id": 8,
+    "examples": [
+      {
+        "eq": "$1,2,3}$",
+        "err": "Extra }, or forgotten $.",
+        "fix": "${1,2,3}$"
+      },
+      {
+        "eq": "$4,5,6}$",
+        "err": "Extra }, or forgotten $.",
+        "fix": "${4,5,6}$"
+      },
+      {
+        "eq": "$a,b,c}$",
+        "err": "Extra }, or forgotten $.",
+        "fix": "${a,b,c}$"
+      },
+      {
+        "eq": "$m,n,p}$",
+        "err": "Extra }, or forgotten $.",
+        "fix": "${m,n,p}$"
+      },
+      {
+        "eq": "$x,y,z,1,2}$",
+        "err": "Extra }, or forgotten $.",
+        "fix": "${x,y,z,1,2}$"
+      }
+    ]
+  },
+  {
+    "id": 9,
+    "examples": [
+      {
+        "eq": "${1,2,3}",
+        "err": "Missing $ inserted.",
+        "fix": "${1,2,3}$"
+      },
+      {
+        "eq": "${4,5,6}",
+        "err": "Missing $ inserted.",
+        "fix": "${4,5,6}$"
+      },
+      {
+        "eq": "${a,b,c}",
+        "err": "Missing $ inserted.",
+        "fix": "${a,b,c}$"
+      },
+      {
+        "eq": "${m,n,p}",
+        "err": "Missing $ inserted.",
+        "fix": "${m,n,p}$"
+      },
+      {
+        "eq": "${x,y,z,1,2}",
+        "err": "Missing $ inserted.",
+        "fix": "${x,y,z,1,2}$"
+      }
+    ]
+  },
+  {
+    "id": 10,
+    "examples": [
+      {
+        "eq": "{1,2,3}$",
+        "err": "Missing $ inserted.",
+        "fix": "${1,2,3}$"
+      },
+      {
+        "eq": "{m,n,p}$",
+        "err": "Missing $ inserted.",
+        "fix": "${m,n,p}$"
+      },
+      {
+        "eq": "{4,5,6,7}$",
+        "err": "Missing $ inserted.",
+        "fix": "${4,5,6,7}$"
+      },
+      {
+        "eq": "{\\alpha, \\beta}$",
+        "err": "Missing $ inserted.",
+        "fix": "${\\alpha, \\beta}$"
+      },
+      {
+        "eq": "{x,\\ldots,z,1,2,3}$",
+        "err": "Missing $ inserted.",
+        "fix": "${x,\\ldots,z,1,2,3}$"
+      }
+    ]
+  },
+  {
+    "id": 11,
+    "examples": [
+      {
+        "eq": "$x_25^34$",
+        "err": "25 is a subscript and 34 is a superscript",
+        "fix": "$x_{25}^{34}$"
+      },
+      {
+        "eq": "$x_25^-1$",
+        "err": "25 is a subscript and -1 is a superscript",
+        "fix": "$x_{25}^{-1}$"
+      },
+      {
+        "eq": "$x_10^56$",
+        "err": "10 is a subscript and 56 is a superscript",
+        "fix": "$x_{10}^{56}$"
+      },
+      {
+        "eq": "$y_28^-10$",
+        "err": "28 is a subscript and -10 is a superscript",
+        "fix": "$y_{28}^{-10}$"
+      },
+      {
+        "eq": "$789+x_123^456$",
+        "err": "123 is a subscript and 456 is a superscript",
+        "fix": "$789+x_{123}^{456}$"
+      }
+    ]
+  },
+  {
+    "id": 12,
+    "examples": [
+      {
+        "eq": "{1,2,3}$$",
+        "err": "Missing $ inserted.",
+        "fix": "$${1,2,3}$$"
+      },
+      {
+        "eq": "{4,5,6}$$",
+        "err": "Missing $ inserted.",
+        "fix": "$${4,5,6}$$"
+      },
+      {
+        "eq": "{a,b,c}$$",
+        "err": "Missing $ inserted.",
+        "fix": "$${a,b,c}$$"
+      },
+      {
+        "eq": "{m,n,p}$$",
+        "err": "Missing $ inserted.",
+        "fix": "$${m,n,p}$$"
+      },
+      {
+        "eq": "{x,y,z,1,2,3}$$",
+        "err": "Missing $ inserted.",
+        "fix": "$${x,y,z,1,2,3}$$"
+      }
+    ]
+  },
+  {
+    "id": 13,
+    "examples": [
+      {
+        "eq": "$$F=ma$",
+        "err": "Display math should end with $$.",
+        "fix": "$$F=ma$$"
+      },
+      {
+        "eq": "$$x^{10}$",
+        "err": "Display math should end with $$.",
+        "fix": "$$x^{10}$$"
+      },
+      {
+        "eq": "$${1,2,3}$",
+        "err": "Display math should end with $$.",
+        "fix": "$${1,2,3}$$"
+      },
+      {
+        "eq": "$$\\frac{a}{b}$",
+        "err": "Display math should end with $$.",
+        "fix": "$$\\frac{a}{b}$$"
+      },
+      {
+        "eq": "$$\\dot{F}+\\frac{a}{b}+x^{10}$",
+        "err": "Display math should end with $$.",
+        "fix": "$$\\dot{F}+\\frac{a}{b}+x^{10}$$"
+      }
+    ]
+  },
+  {
+    "id": 14,
+    "examples": [
+      {
+        "eq": "${1,2,3}$",
+        "err": "{ } is a set.",
+        "fix": "$\\{1,2,3\\}$"
+      },
+      {
+        "eq": "${4,5,6}$",
+        "err": "{ } is a set.",
+        "fix": "$\\{4,5,6\\}$"
+      },
+      {
+        "eq": "${7,8,9}$",
+        "err": "{ } is a set.",
+        "fix": "$\\{7,8,9\\}$"
+      },
+      {
+        "eq": "${a,b,c}$",
+        "err": "{ } is a set.",
+        "fix": "$\\{a,b,c\\}$"
+      },
+      {
+        "eq": "${m,n,p,1,2,3,4,5,6}$",
+        "err": "{ } is a set.",
+        "fix": "$\\{m,n,p,1,2,3,4,5,6\\}$"
+      }
+    ]
+  },
+  {
+    "id": 15,
+    "examples": [
+      {
+        "eq": "$\\{1,2,3}$",
+        "err": "Extra }, or forgotten $.",
+        "fix": "$\\{1,2,3\\}$"
+      },
+      {
+        "eq": "$\\{a,b,c}$",
+        "err": "Extra }, or forgotten $.",
+        "fix": "$\\{a,b,c\\}$"
+      },
+      {
+        "eq": "$\\{45,72,97}$",
+        "err": "Extra }, or forgotten $.",
+        "fix": "$\\{45,72,97\\}$"
+      },
+      {
+        "eq": "$\\{xy,yz,zw}$",
+        "err": "Extra }, or forgotten $.",
+        "fix": "$\\{xy,yz,zw\\}$"
+      },
+      {
+        "eq": "$\\{a+b,b+c,x+y,1,2,3,4,5,6}$",
+        "err": "Extra }, or forgotten $.",
+        "fix": "$\\{a+b,b+c,x+y,1,2,3,4,5,6\\}$"
+      }
+    ]
+  },
+  {
+    "id": 16,
+    "examples": [
+      {
+        "eq": "${1,2,3\\}$",
+        "err": "Missing } inserted.",
+        "fix": "$\\{1,2,3\\}$"
+      },
+      {
+        "eq": "${a,b,c\\}$",
+        "err": "Missing } inserted.",
+        "fix": "$\\{a,b,c\\}$"
+      },
+      {
+        "eq": "${45,72,97\\}$",
+        "err": "Missing } inserted.",
+        "fix": "$\\{45,72,97\\}$"
+      },
+      {
+        "eq": "${xy,yz,zw\\}$",
+        "err": "Missing } inserted.",
+        "fix": "$\\{xy,yz,zw\\}$"
+      },
+      {
+        "eq": "${a+b,b+c,x+y,1,2,3,4,5,6\\}$",
+        "err": "Missing } inserted.",
+        "fix": "$\\{a+b,b+c,x+y,1,2,3,4,5,6\\}$"
+      }
+    ]
+  },
+  {
+    "id": 17,
+    "examples": [
+      {
+        "eq": "$\\{1,2,3}\\$",
+        "err": "Extra }, or forgotten $.",
+        "fix": "$\\{1,2,3\\}$"
+      },
+      {
+        "eq": "$\\{a,b,c}\\$",
+        "err": "Extra }, or forgotten $.",
+        "fix": "$\\{a,b,c\\}$"
+      },
+      {
+        "eq": "$\\{45,72,97}\\$",
+        "err": "Extra }, or forgotten $.",
+        "fix": "$\\{45,72,97\\}$"
+      },
+      {
+        "eq": "$\\{xy,yz,zw}\\$",
+        "err": "Extra }, or forgotten $.",
+        "fix": "$\\{xy,yz,zw\\}$"
+      },
+      {
+        "eq": "$\\{a+b,b+c,x+y,1,2,3,4,5,6}\\$",
+        "err": "Extra }, or forgotten $.",
+        "fix": "$\\{a+b,b+c,x+y,1,2,3,4,5,6\\}$"
+      }
+    ]
+  },
+  {
+    "id": 18,
+    "examples": [
+      {
+        "eq": "$frac{a}{b}$",
+        "err": "frac is a command.",
+        "fix": "$\\frac{a}{b}$"
+      },
+      {
+        "eq": "$frac{m}{n}$",
+        "err": "frac is a command.",
+        "fix": "$\\frac{m}{n}$"
+      },
+      {
+        "eq": "$1,2,ldots,n$",
+        "err": "ldots is a command.",
+        "fix": "$1,2,\\ldots,n$"
+      },
+      {
+        "eq": "$34,51,ldots,n$",
+        "err": "ldots is a command.",
+        "fix": "$34,51,\\ldots,n$"
+      },
+      {
+        "eq": "$\\frac{\\partial y}{partial t}$",
+        "err": "partial is a command.",
+        "fix": "$\\frac{\\partial y}{\\partial t}$"
+      }
+    ]
+  },
+  {
+    "id": 19,
+    "examples": [
+      {
+        "eq": "$mu M$",
+        "err": "mu is a greek letter in math mode.",
+        "fix": "$\\mu M$"
+      },
+      {
+        "eq": "$beta B$",
+        "err": "beta is a greek letter in math mode.",
+        "fix": "$\\beta B$"
+      },
+      {
+        "eq": "$alpha A$",
+        "err": "alpha is a greek letter in math mode.",
+        "fix": "$\\alpha A$"
+      },
+      {
+        "eq": "$sigma C$",
+        "err": "sigma is a greek letter in math mode.",
+        "fix": "$\\sigma C$"
+      },
+      {
+        "eq": "$x_{1}^{2} + rho R + \\sigma C$",
+        "err": "rho is a greek letter in math mode.",
+        "fix": "$x_{1}^{2} + \\rho R + \\sigma C$"
+      }
+    ]
+  },
+  {
+    "id": 20,
+    "examples": [
+      {
+        "eq": "$angle x$",
+        "err": "angle is a command in math mode.",
+        "fix": "$\\angle x$"
+      },
+      {
+        "eq": "$bullet y$",
+        "err": "bullet is a command in math mode.",
+        "fix": "$\\bullet y$"
+      },
+      {
+        "eq": "$x cup{y}$",
+        "err": "cup is a command in math mode.",
+        "fix": "$x \\cup{y}$"
+      },
+      {
+        "eq": "$a approx{b}$",
+        "err": "approx is a command in math mode.",
+        "fix": "$a \\approx{b}$"
+      },
+      {
+        "eq": "$x_{10} approx{x_{12}} + x_{11} \\cup{y}$",
+        "err": "approx is a command in math mode.",
+        "fix": "$x_{10} \\approx{x_{12}} + x_{11} \\cup{y}$"
+      }
+    ]
+  },
+  {
+    "id": 21,
+    "examples": [
+      {
+        "eq": "$a cap{b}$",
+        "err": "cap is a command in math mode.",
+        "fix": "$a \\cap{b}$"
+      },
+      {
+        "eq": "$a circ{b}$",
+        "err": "circ is a command in math mode.",
+        "fix": "$a \\circ{b}$"
+      },
+      {
+        "eq": "$a odot{b}$",
+        "err": "odot is a command in math mode.",
+        "fix": "$a \\odot{b}$"
+      },
+      {
+        "eq": "$a oplus{b}$",
+        "err": "oplus is a command in math mode.",
+        "fix": "$a \\oplus{b}$"
+      },
+      {
+        "eq": "$a otimes{b} + x_{0} \\cup{y} + \\bigcap_{i=1}^{n}{x_{i}}$",
+        "err": "otimes is a command in math mode.",
+        "fix": "$a \\otimes{b} + x_{0} \\cup{y} + \\bigcap_{i=1}^{n}{x_{i}}$"
+      }
+    ]
+  },
+  {
+    "id": 22,
+    "examples": [
+      {
+        "eq": "$bigcap_{i=1}^{n}{x_{i}}$",
+        "err": "bigcap is a command in math mode.",
+        "fix": "$\\bigcap_{i=1}^{n}{x_{i}}$"
+      },
+      {
+        "eq": "$bigcup_{i=1}^{n}{x_{i}}$",
+        "err": "bigcup is a command in math mode.",
+        "fix": "$\\bigcup_{i=1}^{n}{x_{i}}$"
+      },
+      {
+        "eq": "$bigvee_{i=1}^{n}{x_{i}}$",
+        "err": "bigvee is a command in math mode.",
+        "fix": "$\\bigvee_{i=1}^{n}{x_{i}}$"
+      },
+      {
+        "eq": "$bigwedge_{i=1}^{n}{x_{i}}$",
+        "err": "bigwedge is a command in math mode.",
+        "fix": "$\\bigwedge_{i=1}^{n}{x_{i}}$"
+      },
+      {
+        "eq": "$bigsqcup_{i=1}^{n}{x_{i}} - \\bigwedge_{i=1}^{n}{x_{i}}$",
+        "err": "bigsqcup is a command in math mode.",
+        "fix": "$\\bigsqcup_{i=1}^{n}{x_{i}} - \\bigwedge_{i=1}^{n}{x_{i}}$"
+      }
+    ]
+  },
+  {
+    "id": 23,
+    "examples": [
+      {
+        "eq": "$\\frac{X}{Y}bigodot\\frac{M}{N}$",
+        "err": "bigodot is a command in math mode.",
+        "fix": "$\\frac{X}{Y}\\bigodot\\frac{M}{N}$"
+      },
+      {
+        "eq": "$\\frac{X}{Y}bigcirc\\frac{M}{N}$",
+        "err": "bigcirc is a command in math mode.",
+        "fix": "$\\frac{X}{Y}\\bigcirc\\frac{M}{N}$"
+      },
+      {
+        "eq": "$\\frac{X}{Y}bigoplus\\frac{M}{N}$",
+        "err": "bigoplus is a command in math mode.",
+        "fix": "$\\frac{X}{Y}\\bigoplus\\frac{M}{N}$"
+      },
+      {
+        "eq": "$\\frac{X}{Y}bigotimes\\frac{M}{N}$",
+        "err": "bigotimes is a command in math mode.",
+        "fix": "$\\frac{X}{Y}\\bigotimes\\frac{M}{N}$"
+      },
+      {
+        "eq": "$\\frac{X}{Y}bigtriangleup\\frac{M}{N} = \\frac{X}{Y}\\bigodot\\frac{M}{N}$",
+        "err": "bigtriangleup is a command in math mode.",
+        "fix": "$\\frac{X}{Y}\\bigtriangleup\\frac{M}{N} = \\frac{X}{Y}\\bigodot\\frac{M}{N}$"
+      }
+    ]
+  },
+  {
+    "id": 24,
+    "examples": [
+      {
+        "eq": "$\\sqrt 554$",
+        "err": "554 is square root.",
+        "fix": "$\\sqrt {554}$"
+      },
+      {
+        "eq": "$\\sqrt 199$",
+        "err": "199 is square root.",
+        "fix": "$\\sqrt {199}$"
+      },
+      {
+        "eq": "$\\sqrt abc$",
+        "err": "abc is square root.",
+        "fix": "$\\sqrt {abc}$"
+      },
+      {
+        "eq": "$\\sqrt xyz$",
+        "err": "xyz is square root.",
+        "fix": "$\\sqrt {xyz}$"
+      },
+      {
+        "eq": "$\\sqrt a+b+c+d+e+f+g+h$",
+        "err": "a+b+c+d+e+f+g+h is square root.",
+        "fix": "$\\sqrt {a+b+c+d+e+f+g+h}$"
+      }
+    ]
+  },
+  {
+    "id": 25,
+    "examples": [
+      {
+        "eq": "$\\overline m+n$",
+        "err": "m+n is overline.",
+        "fix": "$\\overline {m+n}$"
+      },
+      {
+        "eq": "$\\overline p+q$",
+        "err": "p+q is overline.",
+        "fix": "$\\overline {p+q}$"
+      },
+      {
+        "eq": "$\\overline abc$",
+        "err": "abc is overline.",
+        "fix": "$\\overline {abc}$"
+      },
+      {
+        "eq": "$\\overline ab+cd$",
+        "err": "ab+cd is overline.",
+        "fix": "$\\overline {ab+cd}$"
+      },
+      {
+        "eq": "$\\overline {abc} = \\overline xy+cz$",
+        "err": "xy+cz is overline.",
+        "fix": "$\\overline {abc} = \\overline {xy+cz}$"
+      }
+    ]
+  },
+  {
+    "id": 26,
+    "examples": [
+      {
+        "eq": "$\\underline ab$",
+        "err": "ab is underline.",
+        "fix": "$\\underline {ab}$"
+      },
+      {
+        "eq": "$\\underline xy$",
+        "err": "xy is underline.",
+        "fix": "$\\underline {xy}$"
+      },
+      {
+        "eq": "$\\underline m+n$",
+        "err": "m+n is underline.",
+        "fix": "$\\underline {m+n}$"
+      },
+      {
+        "eq": "$\\underline 233$",
+        "err": "233 is underline.",
+        "fix": "$\\underline {233}$"
+      },
+      {
+        "eq": "$\\underline xyz$",
+        "err": "xyz is underline.",
+        "fix": "$\\underline {xyz}$"
+      }
+    ]
+  },
+  {
+    "id": 27,
+    "examples": [
+      {
+        "eq": "$\\sum{i=j}^{k} \\frac{n}{3}$",
+        "err": "Missing _ in sum.",
+        "fix": "$\\sum_{i=j}^{k} \\frac{n}{3}$"
+      },
+      {
+        "eq": "$\\sum{i=1}^{n} \\frac{n}{n+1}$",
+        "err": "Missing _ in sum.",
+        "fix": "$\\sum_{i=1}^{n} \\frac{n}{n+1}$"
+      },
+      {
+        "eq": "$\\sum{i=m}^{n} \\frac{n}{n+1}$",
+        "err": "Missing _ in sum.",
+        "fix": "$\\sum_{i=m}^{n} \\frac{n}{n+1}$"
+      },
+      {
+        "eq": "$\\sum{i=p}^{q} \\frac{n}{n+1}$",
+        "err": "Missing _ in sum.",
+        "fix": "$\\sum_{i=p}^{q} \\frac{n}{n+1}$"
+      },
+      {
+        "eq": "$\\sum{i=5}^{7} \\frac{n}{3} \\frac{m}{3} \\frac{k}{3} \\frac{l}{3}$",
+        "err": "Missing _ in sum.",
+        "fix": "$\\sum_{i=5}^{7} \\frac{n}{3} \\frac{m}{3} \\frac{k}{3} \\frac{l}{3}$"
+      }
+    ]
+  },
+  {
+    "id": 28,
+    "examples": [
+      {
+        "eq": "$\\lim{x \\to 0}{f(x)}=5$",
+        "err": "Missing _ in lim.",
+        "fix": "$\\lim_{x \\to 0}{f(x)}=5$"
+      },
+      {
+        "eq": "$\\lim{x \\to 1}{f(x)}=0$",
+        "err": "Missing _ in lim.",
+        "fix": "$\\lim_{x \\to 1}{f(x)}=0$"
+      },
+      {
+        "eq": "$\\lim{x \\to 0}{f(x)}=0$",
+        "err": "Missing _ in lim.",
+        "fix": "$\\lim_{x \\to 0}{f(x)}=0$"
+      },
+      {
+        "eq": "$\\lim{x \\to 0}{f(x)}=\\infty$",
+        "err": "Missing _ in lim.",
+        "fix": "$\\lim_{x \\to 0}{f(x)}=\\infty$"
+      },
+      {
+        "eq": "$\\lim{x \\to \\infty}{f(x)} = \\frac{f(x)}{3} = 0$",
+        "err": "Missing _ in lim.",
+        "fix": "$\\lim_{x \\to \\infty}{f(x)} = \\frac{f(x)}{3} = 0$"
+      }
+    ]
+  },
+  {
+    "id": 29,
+    "examples": [
+      {
+        "eq": "$\\wedge{i=1}^{n}{x_{i}}$",
+        "err": "Missing _ in wedge.",
+        "fix": "$\\wedge_{i=1}^{n}{x_{i}}$"
+      },
+      {
+        "eq": "$\\wedge{i=1}^{5}{x_{i}}$",
+        "err": "Missing _ in wedge.",
+        "fix": "$\\wedge_{i=1}^{5}{x_{i}}$"
+      },
+      {
+        "eq": "$\\wedge{i=m}^{n}{x_{i}}$",
+        "err": "Missing _ in wedge.",
+        "fix": "$\\wedge_{i=m}^{n}{x_{i}}$"
+      },
+      {
+        "eq": "$\\wedge{i=p}^{q}{x_{i}}$",
+        "err": "Missing _ in wedge.",
+        "fix": "$\\wedge_{i=p}^{q}{x_{i}}$"
+      },
+      {
+        "eq": "$\\wedge{i={r_1}}^{r_2}{x_{i}} + \\sum_{i=p}^{q} \\frac{n}{n+1}$",
+        "err": "Missing _ in wedge.",
+        "fix": "$\\wedge_{i={r_1}}^{r_2}{x_{i}} + \\sum_{i=p}^{q} \\frac{n}{n+1}$"
+      }
+    ]
+  },
+  {
+    "id": 30,
+    "examples": [
+      {
+        "eq": "$\\vee{i=1}^{n}{x_{i}}$",
+        "err": "Missing _ in \\vee.",
+        "fix": "$\\vee_{i=1}^{n}{x_{i}}$"
+      },
+      {
+        "eq": "$\\vee{i=1}^{5}{x_{i}}$",
+        "err": "Missing _ in \\vee.",
+        "fix": "$\\vee_{i=1}^{5}{x_{i}}$"
+      },
+      {
+        "eq": "$\\vee{i=m}^{n}{x_{i}}$",
+        "err": "Missing _ in \\vee.",
+        "fix": "$\\vee_{i=m}^{n}{x_{i}}$"
+      },
+      {
+        "eq": "$\\vee{i=p}^{q}{x_{i}}$",
+        "err": "Missing _ in \\vee.",
+        "fix": "$\\vee_{i=p}^{q}{x_{i}}$"
+      },
+      {
+        "eq": "$\\wedge_{i={r_1}}^{r_2}{x_{i}} + \\vee{i=r_{1}}^{r_{2}}{x_{i}}$",
+        "err": "Missing _ in \\vee.",
+        "fix": "$\\wedge_{i={r_1}}^{r_2}{x_{i}} + \\vee_{i=r_{1}}^{r_{2}}{x_{i}}$"
+      }
+    ]
+  },
+  {
+    "id": 31,
+    "examples": [
+      {
+        "eq": "$\\int{1}^{n} \\frac{x}{x+1}dx$",
+        "err": "Missing _ in int.",
+        "fix": "$\\int_{1}^{n} \\frac{x}{x+1}dx$"
+      },
+      {
+        "eq": "$\\int{1}^{n} \\frac{x+2}{x+1}dx$",
+        "err": "Missing _ in int.",
+        "fix": "$\\int_{1}^{n} \\frac{x+2}{x+1}dx$"
+      },
+      {
+        "eq": "$\\int{p}^{p+q} \\frac{x}{x+1}dx$",
+        "err": "Missing _ in int.",
+        "fix": "$\\int_{p}^{p+q} \\frac{x}{x+1}dx$"
+      },
+      {
+        "eq": "$\\int{1}^{10} \\frac{x+2}{x+1}dx$",
+        "err": "Missing _ in int.",
+        "fix": "$\\int_{1}^{10} \\frac{x+2}{x+1}dx$"
+      },
+      {
+        "eq": "$\\int{i}^{j} \\frac{u}{u+1}du + \\vee_{i=r_{1}}^{r_{2}}{x_{i}}$",
+        "err": "Missing _ in int.",
+        "fix": "$\\int_{i}^{j} \\frac{u}{u+1}du + \\vee_{i=r_{1}}^{r_{2}}{x_{i}}$"
+      }
+    ]
+  },
+  {
+    "id": 32,
+    "examples": [
+      {
+        "eq": "$\\frac{a}b$",
+        "err": "b is the second operand of command \\frac.",
+        "fix": "$\\frac{a}{b}$"
+      },
+      {
+        "eq": "$\\frac{m}n$",
+        "err": "n is the second operand of command \\frac.",
+        "fix": "$\\frac{m}{n}$"
+      },
+      {
+        "eq": "$\\frac{a}x^{10}$",
+        "err": "x^{10} is the second operand of command \\frac.",
+        "fix": "$\\frac{a}{x^{10}}$"
+      },
+      {
+        "eq": "$\\frac{a}x_{10}$",
+        "err": "x_{10} is the second operand of command \\frac.",
+        "fix": "$\\frac{a}{x_{10}}$"
+      },
+      {
+        "eq": "$\\frac{a}{x_{10}} + \\frac{a}12$",
+        "err": "12 is the second operand of command \\frac.",
+        "fix": "$\\frac{a}{x_{10}} + \\frac{a}{12}$"
+      }
+    ]
+  },
+  {
+    "id": 33,
+    "examples": [
+      {
+        "eq": "$\\vec{n}=\\vec{A}+b$",
+        "err": "b is a var of vector.",
+        "fix": "$\\vec{n}=\\vec{A}+\\vec{b}$"
+      },
+      {
+        "eq": "$\\vec{n}=\\vec{p}+q$",
+        "err": "q is a var of vector.",
+        "fix": "$\\vec{n}=\\vec{p}+\\vec{q}$"
+      },
+      {
+        "eq": "$\\vec{n}=A+\\vec{b}$",
+        "err": "A is a var of vector.",
+        "fix": "$\\vec{n}=\\vec{A}+\\vec{b}$"
+      },
+      {
+        "eq": "$\\vec{n}=p+\\vec{q}$",
+        "err": "p is a var of vector.",
+        "fix": "$\\vec{n}=\\vec{p}+\\vec{q}$"
+      },
+      {
+        "eq": "$\\vec{n}=A+\\vec{B}+\\vec{C}+\\vec{D}+\\vec{E}+\\vec{F}$",
+        "err": "A is a var of vector.",
+        "fix": "$\\vec{n}=\\vec{A}+\\vec{B}+\\vec{C}+\\vec{D}+\\vec{E}+\\vec{F}$"
+      }
+    ]
+  },
+  {
+    "id": 34,
+    "examples": [
+      {
+        "eq": "$n=\\vec{a}+\\vec{b}$",
+        "err": "n is a var of vector.",
+        "fix": "$\\vec{n}=\\vec{a}+\\vec{b}$"
+      },
+      {
+        "eq": "$n=\\vec{p}+\\vec{q}$",
+        "err": "n is a var of vector.",
+        "fix": "$\\vec{n}=\\vec{p}+\\vec{q}$"
+      },
+      {
+        "eq": "$x=\\vec{y}+\\vec{z}$",
+        "err": "x is a var of vector.",
+        "fix": "$\\vec{x}=\\vec{y}+\\vec{z}$"
+      },
+      {
+        "eq": "$n=\\vec{a}+\\vec{b}+\\vec{c}$",
+        "err": "n is a var of vector.",
+        "fix": "$\\vec{n}=\\vec{a}+\\vec{b}+\\vec{c}$"
+      },
+      {
+        "eq": "$x=\\vec{p}+\\vec{q}+\\vec{r}+\\vec{A}+\\vec{B}+\\vec{C}+\\vec{D}$",
+        "err": "x is a var of vector.",
+        "fix": "$\\vec{x}=\\vec{p}+\\vec{q}+\\vec{r}+\\vec{A}+\\vec{B}+\\vec{C}+\\vec{D}$"
+      }
+    ]
+  },
+  {
+    "id": 35,
+    "examples": [
+      {
+        "eq": "$n=A+\\vec{B}$",
+        "err": "n and A are vars of vector.",
+        "fix": "$\\vec{n}=\\vec{A}+\\vec{B}$"
+      },
+      {
+        "eq": "$n=p+\\vec{q}$",
+        "err": "n and p are vars of vector.",
+        "fix": "$\\vec{n}=\\vec{p}+\\vec{q}$"
+      },
+      {
+        "eq": "$x=\\vec{y}+z$",
+        "err": "x and z are vars of vector.",
+        "fix": "$\\vec{x}=\\vec{y}+\\vec{z}$"
+      },
+      {
+        "eq": "$n=\\vec{a}+b+\\vec{c}$",
+        "err": "n and b are vars of vector.",
+        "fix": "$\\vec{n}=\\vec{a}+\\vec{b}+\\vec{c}$"
+      },
+      {
+        "eq": "$x=\\vec{p}+\\vec{q}+r+\\vec{A}$",
+        "err": "x and r are vars of vector.",
+        "fix": "$\\vec{x}=\\vec{p}+\\vec{q}+\\vec{r}+\\vec{A}$"
+      }
+    ]
+  },
+  {
+    "id": 36,
+    "examples": [
+      {
+        "eq": "$\\vec{a}=\\vec{b}\\cdots\\vec{c}$",
+        "err": "\\cdots of two vars of vector should be scalar.",
+        "fix": "$a=\\vec{b}\\cdots\\vec{c}$"
+      },
+      {
+        "eq": "$\\vec{a}=\\vec{c}\\cdots\\vec{d}$",
+        "err": "\\cdots of two vars of vector should be scalar.",
+        "fix": "$a=\\vec{c}\\cdots\\vec{d}$"
+      },
+      {
+        "eq": "$\\vec{p}=\\vec{q}\\cdots\\vec{r}$",
+        "err": "\\cdots of two vars of vector should be scalar.",
+        "fix": "$p=\\vec{q}\\cdots\\vec{r}$"
+      },
+      {
+        "eq": "$\\vec{x}=\\vec{y}\\cdots\\vec{z}$",
+        "err": "\\cdots of two vars of vector should be scalar.",
+        "fix": "$x=\\vec{y}\\cdots\\vec{z}$"
+      },
+      {
+        "eq": "$\\vec{v}=\\vec{x_1}\\cdots\\vec{x_2}$",
+        "err": "\\cdots of two vars of vector should be scalar.",
+        "fix": "$v=\\vec{x_1}\\cdots\\vec{x_2}$"
+      }
+    ]
+  },
+  {
+    "id": 37,
+    "examples": [
+      {
+        "eq": "$\\vec{a}=3\\cdot\\vec{c}$",
+        "err": "\\cdots need two vars of vector.",
+        "fix": "$\\vec{a}=3\\vec{c}$"
+      },
+      {
+        "eq": "$\\vec{a}=5\\cdots\\vec{d}$",
+        "err": "\\cdots need two vars of vector.",
+        "fix": "$\\vec{a}=5\\vec{d}$"
+      },
+      {
+        "eq": "$\\vec{p}=7\\cdots\\vec{r}$",
+        "err": "\\cdots need two vars of vector.",
+        "fix": "$\\vec{p}=7\\vec{r}$"
+      },
+      {
+        "eq": "$\\vec{x}=9\\cdots\\vec{z}$",
+        "err": "\\cdots need two vars of vector.",
+        "fix": "$\\vec{x}=9\\vec{z}$"
+      },
+      {
+        "eq": "$\\vec{v}=123456789\\cdots\\vec{n}$",
+        "err": "\\cdots need two vars of vector.",
+        "fix": "$\\vec{v}=123456789\\vec{n}$"
+      }
+    ]
+  },
+  {
+    "id": 38,
+    "examples": [
+      {
+        "eq": "${1,2,3}$",
+        "err": "{ } is a set",
+        "fix": "$\\{1,2,3\\}$"
+      },
+      {
+        "eq": "${4,5,6,7}$",
+        "err": "{ } is a set",
+        "fix": "$\\{4,5,6,7\\}$"
+      },
+      {
+        "eq": "$S={7,8,9}$",
+        "err": "{ } is a set",
+        "fix": "$S=\\{7,8,9\\}$"
+      },
+      {
+        "eq": "$S_1={\\alpha,\\beta}$",
+        "err": "{ } is a set",
+        "fix": "$S_1=\\{\\alpha,\\beta\\}$"
+      },
+      {
+        "eq": "$S={x_1,\\ldots,x_n,1,2,3,4,5,6}$",
+        "err": "{ } is a set",
+        "fix": "$S=\\{x_1,\\ldots,x_n,1,2,3,4,5,6\\}$"
+      }
+    ]
+  },
+  {
+    "id": 39,
+    "examples": [
+      {
+        "eq": "$\\vec{a}=3\\times\\vec{c}$",
+        "err": "\\times need two vars of vector.",
+        "fix": "$\\vec{a}=3\\vec{c}$"
+      },
+      {
+        "eq": "$\\vec{a}=4\\times\\vec{d}$",
+        "err": "\\times need two vars of vector.",
+        "fix": "$\\vec{a}=4\\vec{d}$"
+      },
+      {
+        "eq": "$\\vec{p}=5\\times\\vec{r}$",
+        "err": "\\times need two vars of vector.",
+        "fix": "$\\vec{p}=5\\vec{r}$"
+      },
+      {
+        "eq": "$\\vec{x}=6\\times\\vec{z}$",
+        "err": "\\times need two vars of vector.",
+        "fix": "$\\vec{x}=6\\vec{z}$"
+      },
+      {
+        "eq": "$\\vec{v}=123456789\\times\\vec{n}$",
+        "err": "\\times need two vars of vector.",
+        "fix": "$\\vec{v}=123456789\\vec{n}$"
+      }
+    ]
+  },
+  {
+    "id": 40,
+    "examples": [
+      {
+        "eq": "$alpha$",
+        "err": "alpha is a letter",
+        "fix": "$\\alpha$"
+      },
+      {
+        "eq": "$\\alpha+beta$",
+        "err": "beta is a letter",
+        "fix": "$\\alpha+\\beta$"
+      },
+      {
+        "eq": "$gamma(x, y)$",
+        "err": "gamma is a letter",
+        "fix": "$\\gamma(x, y)$"
+      },
+      {
+        "eq": "$s \\models varphi$",
+        "err": "varphi is a letter",
+        "fix": "$s \\models \\varphi$"
+      },
+      {
+        "eq": "$\\theta = 2k pi, k \\in \\mathbb{Z}$",
+        "err": "pi is a letter",
+        "fix": "$\\theta = 2k \\pi, k \\in \\mathbb{Z}$"
+      }
+    ]
+  },
+  {
+    "id": 41,
+    "examples": [
+      {
+        "eq": "$sin x$",
+        "err": "sin is a function",
+        "fix": "$\\sin x$"
+      },
+      {
+        "eq": "$ln x > 0$",
+        "err": "ln is a function",
+        "fix": "$\\ln x > 0$"
+      },
+      {
+        "eq": "$y=1+cos x$",
+        "err": "cos is a function",
+        "fix": "$y=1+\\cos x$"
+      },
+      {
+        "eq": "$log e^x = x$",
+        "err": "log is a function",
+        "fix": "$\\log e^x = x$"
+      },
+      {
+        "eq": "$(log e)^2 + \\ln x > 0$",
+        "err": "log is a function",
+        "fix": "$(\\log e)^2 + \\ln x > 0$"
+      }
+    ]
+  },
+  {
+    "id": 42,
+    "examples": [
+      {
+        "eq": "${1,2,3$",
+        "err": "missing } inserted.",
+        "fix": "${1,2,3}$"
+      },
+      {
+        "eq": "${4,5,6,7$",
+        "err": "missing } inserted.",
+        "fix": "${4,5,6,7}$"
+      },
+      {
+        "eq": "$S={a,b,c$",
+        "err": "missing } inserted.",
+        "fix": "$S={a,b,c}$"
+      },
+      {
+        "eq": "$S_1 = {x_1,\\ldots,x_n$",
+        "err": "missing } inserted.",
+        "fix": "$S_1 = {x_1,\\ldots,x_n}$"
+      },
+      {
+        "eq": "${m,n,\\ldots,p \\cup {1,2}$",
+        "err": "missing } inserted.",
+        "fix": "${m,n,\\ldots,p} \\cup {1,2}$"
+      }
+    ]
+  },
+  {
+    "id": 43,
+    "examples": [
+      {
+        "eq": "$\\left [e^{x^2}\\right$",
+        "err": "Missing delimiter [ inserted ].",
+        "fix": "$\\left [e^{x^2}\\right]$"
+      },
+      {
+        "eq": "$\\left [\\frac{x}{y}\\right$",
+        "err": "Missing delimiter [ inserted ].",
+        "fix": "$\\left [\\frac{x}{y}\\right]$"
+      },
+      {
+        "eq": "$\\left [\\frac{H^2}{K^2}\\right$",
+        "err": "Missing delimiter [ inserted ].",
+        "fix": "$\\left [\\frac{H^2}{K^2}\\right]$"
+      },
+      {
+        "eq": "$\\left [\\frac{a_{1}}{a_{2}}\\right$",
+        "err": "Missing delimiter [ inserted ].",
+        "fix": "$\\left [\\frac{a_{1}}{a_{2}}\\right]$"
+      },
+      {
+        "eq": "$\\left [\\vec{a}=\\vec{b}+\\vec{c}+\\vec{d}+\\vec{e}\\right$",
+        "err": "Missing delimiter [ inserted ].",
+        "fix": "$\\left [\\vec{a}=\\vec{b}+\\vec{c}+\\vec{d}+\\vec{e}\\right]$"
+      }
+    ]
+  },
+  {
+    "id": 44,
+    "examples": [
+      {
+        "eq": "$\\log(x)$",
+        "err": "( ) are extra.",
+        "fix": "$\\log{x}$"
+      },
+      {
+        "eq": "$\\vec(x)$",
+        "err": "( ) are extra.",
+        "fix": "$\\vec{x}$"
+      },
+      {
+        "eq": "$\\sqrt(x)$",
+        "err": "( ) are extra.",
+        "fix": "$\\sqrt{x}$"
+      },
+      {
+        "eq": "$\\sqrt(x^{2})$",
+        "err": "( ) are extra.",
+        "fix": "$\\sqrt{x^{2}}$"
+      },
+      {
+        "eq": "$\\frac(x^2)(y^3)$",
+        "err": "( ) are extra.",
+        "fix": "$\\frac{x^2}{y^3}$"
+      }
+    ]
+  },
+  {
+    "id": 45,
+    "examples": [
+      {
+        "eq": "$\\left (e^{x^2}\\right$",
+        "err": "Missing delimiter ( inserted ).",
+        "fix": "$\\left (e^{x^2}\\right)$"
+      },
+      {
+        "eq": "$\\left (\\frac{x}{y}\\right$",
+        "err": "Missing delimiter ( inserted ).",
+        "fix": "$\\left (\\frac{x}{y}\\right)$"
+      },
+      {
+        "eq": "$\\left (\\frac{H^2}{K^2}\\right$",
+        "err": "Missing delimiter ( inserted ).",
+        "fix": "$\\left (\\frac{H^2}{K^2}\\right)$"
+      },
+      {
+        "eq": "$\\left (\\frac{a_{1}}{a_{2}}\\right$",
+        "err": "Missing delimiter ( inserted ).",
+        "fix": "$\\left (\\frac{a_{1}}{a_{2}}\\right)$"
+      },
+      {
+        "eq": "$\\left (\\vec{a}=\\vec{b}+\\vec{c}\\right$",
+        "err": "Missing delimiter ( inserted ).",
+        "fix": "$\\left (\\vec{a}=\\vec{b}+\\vec{c}\\right)$"
+      }
+    ]
+  },
+  {
+    "id": 46,
+    "examples": [
+      {
+        "eq": "$\\sqrta$",
+        "err": "Undefined control sequence.",
+        "fix": "$\\sqrt{a}$"
+      },
+      {
+        "eq": "$\\sqrtx$",
+        "err": "Undefined control sequence.",
+        "fix": "$\\sqrt{x}$"
+      },
+      {
+        "eq": "$a=b\\timesc$",
+        "err": "Undefined control sequence.",
+        "fix": "$a=b\\times{c}$"
+      },
+      {
+        "eq": "$x=y\\timesz$",
+        "err": "Undefined control sequence.",
+        "fix": "$x=y\\times{z}$"
+      },
+      {
+        "eq": "$\\sqrt{a}\\vecx$",
+        "err": "Undefined control sequence.",
+        "fix": "$\\sqrt{a}\\vec{x}$"
+      }
+    ]
+  },
+  {
+    "id": 47,
+    "examples": [
+      {
+        "eq": "$c_1,m$",
+        "err": "1,m is a subscript.",
+        "fix": "$c_{1,m}$"
+      },
+      {
+        "eq": "$c_1,n$",
+        "err": "1,n is a subscript.",
+        "fix": "$c_{1,n}$"
+      },
+      {
+        "eq": "$f_a,b$",
+        "err": "a,b is a subscript.",
+        "fix": "$f_{a,b}$"
+      },
+      {
+        "eq": "$f_a,b,c$",
+        "err": "a,b,c is a subscript.",
+        "fix": "$f_{a,b,c}$"
+      },
+      {
+        "eq": "$f_a,b(x,y,z)$",
+        "err": "a,b is a subscript.",
+        "fix": "$f_{a,b}(x,y,z)$"
+      }
+    ]
+  },
+  {
+    "id": 48,
+    "examples": [
+      {
+        "eq": "$\\left(y)$",
+        "err": "Missing \\right inserted.",
+        "fix": "$\\left(y\\right)$"
+      },
+      {
+        "eq": "$\\left(x_1)$",
+        "err": "Missing \\right inserted.",
+        "fix": "$\\left(x_1\\right)$"
+      },
+      {
+        "eq": "$\\left(x+y)$",
+        "err": "Missing \\right inserted.",
+        "fix": "$\\left(x+y\\right)$"
+      },
+      {
+        "eq": "$\\left(x,y)$",
+        "err": "Missing \\right inserted.",
+        "fix": "$\\left(x,y\\right)$"
+      },
+      {
+        "eq": "$\\left[x=x_0+x_1+x_2+x_3]$",
+        "err": "Missing \\right inserted.",
+        "fix": "$\\left[x=x_0+x_1+x_2+x_3\\right]$"
+      }
+    ]
+  },
+  {
+    "id": 49,
+    "examples": [
+      {
+        "eq": "$[x\\right]$",
+        "err": "Extra \\right.",
+        "fix": "$\\left[x\\right]$"
+      },
+      {
+        "eq": "$[y\\right]$",
+        "err": "Extra \\right.",
+        "fix": "$\\left[y\\right]$"
+      },
+      {
+        "eq": "$[z\\right]$",
+        "err": "Extra \\right.",
+        "fix": "$\\left[z\\right]$"
+      },
+      {
+        "eq": "$(x\\right)$",
+        "err": "Extra \\right.",
+        "fix": "$\\left(x\\right)$"
+      },
+      {
+        "eq": "$[y=x_0+x_1+x_2+x_3\\right]$",
+        "err": "Extra \\right.",
+        "fix": "$\\left[y=x_0+x_1+x_2+x_3\\right]$"
+      }
+    ]
+  },
+  {
+    "id": 50,
+    "examples": [
+      {
+        "eq": "$f_a_1$",
+        "err": "Double subscript _.",
+        "fix": "$f_{a_{1}}$"
+      },
+      {
+        "eq": "$f_a_b$",
+        "err": "Double subscript _.",
+        "fix": "$f_{a_{b}}$"
+      },
+      {
+        "eq": "$f_a_i$",
+        "err": "Double subscript _.",
+        "fix": "$f_{a_{i}}$"
+      },
+      {
+        "eq": "$f_x_10$",
+        "err": "Double subscript _.",
+        "fix": "$f_{x_{10}}$"
+      },
+      {
+        "eq": "$f_\\delta_j$",
+        "err": "Double subscript _.",
+        "fix": "$f_{\\delta_{j}}$"
+      }
+    ]
+  },
+  {
+    "id": 51,
+    "examples": [
+      {
+        "eq": "$f^a^1$",
+        "err": "Double superscript ^.",
+        "fix": "$f^{a^{1}}$"
+      },
+      {
+        "eq": "$f^a^b$",
+        "err": "Double superscript ^.",
+        "fix": "$f^{a^{b}}$"
+      },
+      {
+        "eq": "$x^a^1$",
+        "err": "Double superscript ^.",
+        "fix": "$x^{a^{1}}$"
+      },
+      {
+        "eq": "$f^a^10$",
+        "err": "Double superscript ^.",
+        "fix": "$f^{a^{10}}$"
+      },
+      {
+        "eq": "$X^\\delta^j$",
+        "err": "Double superscript ^.",
+        "fix": "$X^{\\delta^{j}}$"
+      }
+    ]
+  },
+  {
+    "id": 52,
+    "examples": [
+      {
+        "eq": "$\\sin{a+b}$",
+        "err": "a+b is operand of a Trigonometric function.",
+        "fix": "$\\sin{(a+b)}$"
+      },
+      {
+        "eq": "$\\cos{a+b}$",
+        "err": "a+b is operand of a Trigonometric function.",
+        "fix": "$\\cos{(a+b)}$"
+      },
+      {
+        "eq": "$\\sin{a+\\pi}$",
+        "err": "a+\\pi is operand of a Trigonometric function.",
+        "fix": "$\\sin{(a+\\pi)}$"
+      },
+      {
+        "eq": "$\\sin{x+\\pi}$",
+        "err": "x+\\pi is operand of a Trigonometric function.",
+        "fix": "$\\sin{(x+\\pi)}$"
+      },
+      {
+        "eq": "$\\cos{x+\\frac{\\pi}{6}}+\\sin{(x+\\pi)}$",
+        "err": "x+\\frac{\\pi}{6} is operand of a Trigonometric function.",
+        "fix": "$\\cos{(x+\\frac{\\pi}{6})}+\\sin{(x+\\pi)}$"
+      }
+    ]
+  },
+  {
+    "id": 53,
+    "examples": [
+      {
+        "eq": "$\\pi_{i=1}^n$",
+        "err": "Unexpected letter pi, product symbol expected.",
+        "fix": "$\\product_{i=1}^n$"
+      },
+      {
+        "eq": "$\\sigma_{i=1}^n$",
+        "err": "Unexpected letter sigma, sum symbol expected.",
+        "fix": "$\\sum_{i=1}^n$"
+      },
+      {
+        "eq": "$\\sigma_{j=0}^N$",
+        "err": "Unexpected letter sigma, sum symbol expected.",
+        "fix": "$\\sum_{j=0}^N$"
+      },
+      {
+        "eq": "$\\sigma_{i=1}^n i$",
+        "err": "Unexpected letter sigma, sum symbol expected.",
+        "fix": "$\\sum_{i=1}^n i$"
+      },
+      {
+        "eq": "$\\pi_{i=1}^n f(i)+g(i)$",
+        "err": "Unexpected letter pi, product symbol expected.",
+        "fix": "$\\product_{i=1}^n f(i)+g(i)$"
+      }
+    ]
+  },
+  {
+    "id": 54,
+    "examples": [
+      {
+        "eq": "$X ~ N(0,1)$",
+        "err": "Distribution obey ~ expected.",
+        "fix": "$X \\thicksim N(0,1)$"
+      },
+      {
+        "eq": "$Y ~ N(1,1)$",
+        "err": "Distribution obey ~ expected.",
+        "fix": "$Y \\thicksim N(1,1)$"
+      },
+      {
+        "eq": "$X_1 ~ \\Gamma(1)$",
+        "err": "Distribution obey ~ expected.",
+        "fix": "$X_1 \\thicksim \\Gamma(1)$"
+      },
+      {
+        "eq": "$X_1 ~ N(\\mu,\\sigma)$",
+        "err": "Distribution obey ~ expected.",
+        "fix": "$X_1 \\thicksim N(\\mu,\\sigma)$"
+      },
+      {
+        "eq": "$Z_0 ~ Poisson(\\lambda)$",
+        "err": "Distribution obey ~ expected.",
+        "fix": "$Z_0 \\thicksim Poisson(\\lambda)$"
+      }
+    ]
+  },
+  {
+    "id": 55,
+    "examples": [
+      {
+        "eq": "$\\vec{xy}$",
+        "err": "Command \\vec only serve for one operand.",
+        "fix": "$\\overrightarrow{xy}$"
+      },
+      {
+        "eq": "$\\vec{ab}$",
+        "err": "Command \\vec only serve for one operand.",
+        "fix": "$\\overrightarrow{ab}$"
+      },
+      {
+        "eq": "$\\vec{xyz}$",
+        "err": "Command \\vec only serve for one operand.",
+        "fix": "$\\overrightarrow{xyz}$"
+      },
+      {
+        "eq": "$\\vec{a}=\\vec{b}+\\vec{cd}$",
+        "err": "Command \\vec only serve for one operand.",
+        "fix": "$\\vec{a}=\\vec{b}+\\overrightarrow{cd}$"
+      },
+      {
+        "eq": "$\\vec{v}=\\vec{xy}+\\vec{pr}$",
+        "err": "Command \\vec only serve for one operand.",
+        "fix": "$\\vec{v}=\\overrightarrow{xy}+\\overrightarrow{pr}$"
+      }
+    ]
+  },
+  {
+    "id": 56,
+    "examples": [
+      {
+        "eq": "$\\vec{x_{1}}$",
+        "err": "Command \\vec only serve for one operand.",
+        "fix": "$\\overrightarrow{x_{1}}$"
+      },
+      {
+        "eq": "$\\vec{x_{i}}$",
+        "err": "Command \\vec only serve for one operand.",
+        "fix": "$\\overrightarrow{x_{i}}$"
+      },
+      {
+        "eq": "$\\vec{x^{2}}$",
+        "err": "Command \\vec only serve for one operand.",
+        "fix": "$\\overrightarrow{x^{2}}$"
+      },
+      {
+        "eq": "$\\vec{x^{i}}$",
+        "err": "Command \\vec only serve for one operand.",
+        "fix": "$\\overrightarrow{x^{i}}$"
+      },
+      {
+        "eq": "$\\vec{x_{10}^{i}}+\\vec{x^{i}}$",
+        "err": "Command \\vec only serve for one operand.",
+        "fix": "$\\overrightarrow{x_{10}^{i}}+\\overrightarrow{x^{i}}$"
+      }
+    ]
+  },
+  {
+    "id": 57,
+    "examples": [
+      {
+        "eq": "$\\bar{xy}$",
+        "err": "Command \\bar only serve for one operand.",
+        "fix": "$\\overline{xy}$"
+      },
+      {
+        "eq": "$\\bar{xyz}$",
+        "err": "Command \\bar only serve for one operand.",
+        "fix": "$\\overline{xyz}$"
+      },
+      {
+        "eq": "$\\bar{a+b}$",
+        "err": "Command \\bar only serve for one operand.",
+        "fix": "$\\overline{a+b}$"
+      },
+      {
+        "eq": "$\\bar{a+b-c}$",
+        "err": "Command \\bar only serve for one operand.",
+        "fix": "$\\overline{a+b-c}$"
+      },
+      {
+        "eq": "$\\bar{a+b\\times{c}}+\\bar{a+b}$",
+        "err": "Command \\bar only serve for one operand.",
+        "fix": "$\\overline{a+b\\times{c}}+\\overline{a+b}$"
+      }
+    ]
+  },
+  {
+    "id": 58,
+    "examples": [
+      {
+        "eq": "$\\bar{x_{1}}$",
+        "err": "Command \\bar only serve for one operand.",
+        "fix": "$\\overline{x_{1}}$"
+      },
+      {
+        "eq": "$\\bar{x_{i}}$",
+        "err": "Command \\bar only serve for one operand.",
+        "fix": "$\\overline{x_{i}}$"
+      },
+      {
+        "eq": "$\\bar{x^{2}}$",
+        "err": "Command \\bar only serve for one operand.",
+        "fix": "$\\overline{x^{2}}$"
+      },
+      {
+        "eq": "$\\bar{x^{i}}$",
+        "err": "Command \\bar only serve for one operand.",
+        "fix": "$\\overline{x^{i}}$"
+      },
+      {
+        "eq": "$\\bar{x_{10}^{i}}+\\bar{x^{2}}$",
+        "err": "Command \\bar only serve for one operand.",
+        "fix": "$\\overline{x_{10}^{i}}+\\overline{x^{2}}$"
+      }
+    ]
+  },
+  {
+    "id": 59,
+    "examples": [
+      {
+        "eq": "$10%$",
+        "err": "Missing $ inserted.",
+        "fix": "$10\\%$"
+      },
+      {
+        "eq": "$20%$",
+        "err": "Missing $ inserted.",
+        "fix": "$20\\%$"
+      },
+      {
+        "eq": "$31%$",
+        "err": "Missing $ inserted.",
+        "fix": "$31\\%$"
+      },
+      {
+        "eq": "$10%-20%$",
+        "err": "Missing $ inserted.",
+        "fix": "$10\\%-20\\%$"
+      },
+      {
+        "eq": "$35%-100%$",
+        "err": "Missing $ inserted.",
+        "fix": "$35\\%-100\\%$"
+      }
+    ]
+  },
+  {
+    "id": 60,
+    "examples": [
+      {
+        "eq": "$\\int{x}$",
+        "err": "Missing dx in command \\int.",
+        "fix": "$\\int{x}dx$"
+      },
+      {
+        "eq": "$\\int{y}$",
+        "err": "Missing dy in command \\int.",
+        "fix": "$\\int{y}dy$"
+      },
+      {
+        "eq": "$\\int{u}$",
+        "err": "Missing du in command \\int.",
+        "fix": "$\\int{u}du$"
+      },
+      {
+        "eq": "$\\int{v}$",
+        "err": "Missing dv in command \\int.",
+        "fix": "$\\int{v}dv$"
+      },
+      {
+        "eq": "$f(t) = \\int{t}$",
+        "err": "Missing dt in command \\int.",
+        "fix": "$f(t) = \\int{t}dt$"
+      }
+    ]
+  },
+  {
+    "id": 61,
+    "examples": [
+      {
+        "eq": "$\\iint{x+y}dx$",
+        "err": "Integral multiplicity does not match.",
+        "fix": "$\\int{x+y}dx$"
+      },
+      {
+        "eq": "$\\iint{x+y}dy$",
+        "err": "Integral multiplicity does not match.",
+        "fix": "$\\int{x+y}dy$"
+      },
+      {
+        "eq": "$\\iint{x+y}dx$",
+        "err": "Integral multiplicity does not match.",
+        "fix": "$\\int{x+y}dx$"
+      },
+      {
+        "eq": "$\\iint{x+y+z}dz$",
+        "err": "Integral multiplicity does not match.",
+        "fix": "$\\int{x+y+z}dz$"
+      },
+      {
+        "eq": "$\\iiint{x_0+x_1+y+z}dx_0dx_1$",
+        "err": "Integral multiplicity does not match.",
+        "fix": "$\\iint{x_0+x_1+y+z}dx_0dx_1$"
+      }
+    ]
+  },
+  {
+    "id": 62,
+    "examples": [
+      {
+        "eq": "$\\int{x+y}dxdy$",
+        "err": "Integral multiplicity does not match.",
+        "fix": "$\\iint{x+y}dxdy$"
+      },
+      {
+        "eq": "$\\int{x+y+z}dxdz$",
+        "err": "Integral multiplicity does not match.",
+        "fix": "$\\iint{x+y+z}dxdz$"
+      },
+      {
+        "eq": "$\\int{2x+3y}dxdy$",
+        "err": "Integral multiplicity does not match.",
+        "fix": "$\\iint{2x+3y}dxdy$"
+      },
+      {
+        "eq": "$\\iint{2x+3y+4z}dxdydz$",
+        "err": "Integral multiplicity does not match.",
+        "fix": "$\\iiint{2x+3y+4z}dxdydz$"
+      },
+      {
+        "eq": "$\\iint{p+3q+6r+9}dpdqdr$",
+        "err": "Integral multiplicity does not match.",
+        "fix": "$\\iiint{p+3q+6r+9}dpdqdr$"
+      }
+    ]
+  },
+  {
+    "id": 63,
+    "examples": [
+      {
+        "eq": "$X_{1,,m}+Y_{10}$",
+        "err": "Extra , inserted.",
+        "fix": "$X_{1,m}+Y_{10}$"
+      },
+      {
+        "eq": "$\\{a+b,c+d,,x+y\\}$",
+        "err": "Extra , inserted.",
+        "fix": "$\\{a+b,c+d,x+y\\}$"
+      },
+      {
+        "eq": "$X \\thicksim N(0,,1)$",
+        "err": "Extra , inserted.",
+        "fix": "$X \\thicksim N(0,1)$"
+      },
+      {
+        "eq": "$\\{1,2,3,,\\ldots,n\\}$",
+        "err": "Extra , inserted.",
+        "fix": "$\\{1,2,3,\\ldots,n\\}$"
+      },
+      {
+        "eq": "\\gamma(x,,y,z,1,,2,3,4)",
+        "err": "Extra , inserted.",
+        "fix": "\\gamma(x,y,z,1,2,3,4)"
+      }
+    ]
+  },
+  {
+    "id": 64,
+    "examples": [
+      {
+        "eq": "$A leq {B}$",
+        "err": "leq is a command in math mode.",
+        "fix": "$A \\leq {B}$"
+      },
+      {
+        "eq": "$X geq {Y}$",
+        "err": "geq is a command in math mode.",
+        "fix": "$X \\geq {Y}$"
+      },
+      {
+        "eq": "$S prec {T}$",
+        "err": "prec is a command in math mode.",
+        "fix": "$S \\prec {T}$"
+      },
+      {
+        "eq": "$V succ {U}$",
+        "err": "succ is a command in math mode.",
+        "fix": "$V \\succ {U}$"
+      },
+      {
+        "eq": "$M preceq {N} , V \\succ {U}$",
+        "err": "preceq is a command in math mode.",
+        "fix": "$M \\preceq {N} , V \\succ {U}$"
+      }
+    ]
+  },
+  {
+    "id": 65,
+    "examples": [
+      {
+        "eq": "$A succeq {B}$",
+        "err": "succeq is a command in math mode.",
+        "fix": "$A \\succeq {B}$"
+      },
+      {
+        "eq": "$X subset {Y}$",
+        "err": "subset is a command in math mode.",
+        "fix": "$X \\subset {Y}$"
+      },
+      {
+        "eq": "$S supset {T}$",
+        "err": "supset is a command in math mode.",
+        "fix": "$S \\supset {T}$"
+      },
+      {
+        "eq": "$V subseteq {U}$",
+        "err": "subset is a command in math mode.",
+        "fix": "$V \\subseteq {U}$"
+      },
+      {
+        "eq": "$M supseteq {N} , V supseteq {U}$",
+        "err": "supseteq is a command in math mode.",
+        "fix": "$M \\supseteq {N} , V \\supseteq {U}$"
+      }
+    ]
+  },
+  {
+    "id": 66,
+    "examples": [
+      {
+        "eq": "$\\hat{ab}$",
+        "err": "command \\hat only serve for one operand.",
+        "fix": "$\\widehat{ab}$"
+      },
+      {
+        "eq": "$\\hat{xy}$",
+        "err": "command \\hat only serve for one operand.",
+        "fix": "$\\widehat{xy}$"
+      },
+      {
+        "eq": "$\\hat{abc}$",
+        "err": "command \\hat only serve for one operand.",
+        "fix": "$\\widehat{abc}$"
+      },
+      {
+        "eq": "$\\hat{xyz}$",
+        "err": "command \\hat only serve for one operand.",
+        "fix": "$\\widehat{xyz}$"
+      },
+      {
+        "eq": "$\\hat{a+b+c+d+e+f+g}$",
+        "err": "command \\hat only serve for one operand.",
+        "fix": "$\\widehat{a+b+c+d+e+f+g}$"
+      }
+    ]
+  },
+  {
+    "id": 67,
+    "examples": [
+      {
+        "eq": "$\\hatx$",
+        "err": "Undefined control sequence.",
+        "fix": "$\\hat{x}$"
+      },
+      {
+        "eq": "$\\ddotx$",
+        "err": "Undefined control sequence.",
+        "fix": "$\\ddot{x}$"
+      },
+      {
+        "eq": "$\\checkx$",
+        "err": "Undefined control sequence.",
+        "fix": "$\\check{x}$"
+      },
+      {
+        "eq": "$\\tildea$",
+        "err": "Undefined control sequence.",
+        "fix": "$\\tilde{a}$"
+      },
+      {
+        "eq": "$f(t) = \\brevet$",
+        "err": "Undefined control sequence.",
+        "fix": "$f(t) = \\breve{t}$"
+      }
+    ]
+  },
+  {
+    "id": 68,
+    "examples": [
+      {
+        "eq": "$\\{a}$",
+        "err": "Meaning of \\ can not be transferred.",
+        "fix": "$\\backslash{a}$"
+      },
+      {
+        "eq": "$\\{x}$",
+        "err": "Meaning of \\ can not be transferred.",
+        "fix": "$\\backslash{x}$"
+      },
+      {
+        "eq": "$\\{(a+b)}$",
+        "err": "Meaning of \\ can not be transferred.",
+        "fix": "$\\backslash{(a+b)}$"
+      },
+      {
+        "eq": "$\\{X_{10}}$",
+        "err": "Meaning of \\ can not be transferred.",
+        "fix": "$\\backslash{X_{10}}$"
+      },
+      {
+        "eq": "$\\{\\alpha^{2}}$",
+        "err": "Meaning of \\ can not be transferred.",
+        "fix": "$\\backslash{\\alpha^{2}$"
+      }
+    ]
+  },
+  {
+    "id": 69,
+    "examples": [
+      {
+        "eq": "$A neq{B}$",
+        "err": "neq is a command in math mode.",
+        "fix": "$A \\neq{B}$"
+      },
+      {
+        "eq": "$X cong{Y}$",
+        "err": "cong is a command in math mode.",
+        "fix": "$X \\cong{Y}$"
+      },
+      {
+        "eq": "$S equiv{T}$",
+        "err": "equiv is a command in math mode.",
+        "fix": "$S \\equiv{T}$"
+      },
+      {
+        "eq": "$M_{1} models{P}$",
+        "err": "models is a command in math mode.",
+        "fix": "$M_{1} \\models{P}$"
+      },
+      {
+        "eq": "$F(P,Q) = P simeq{Q}$",
+        "err": "simeq is a command in math mode.",
+        "fix": "$F(P,Q) = P \\simeq{Q}$"
+      }
+    ]
+  },
+  {
+    "id": 70,
+    "examples": [
+      {
+        "eq": "$\\Set{X$",
+        "err": "Runaway argument?",
+        "fix": "$\\Set{X}$"
+      },
+      {
+        "eq": "$\\Set{Y$",
+        "err": "Runaway argument?",
+        "fix": "$\\Set{Y}$"
+      },
+      {
+        "eq": "$\\Set{A,B,\\ldots,Z$",
+        "err": "Runaway argument?",
+        "fix": "$\\Set{A,B,\\ldots,Z}$"
+      },
+      {
+        "eq": "$A := \\Set{ x \\in \\mathds R | f(x)$",
+        "err": "Runaway argument?",
+        "fix": "$A := \\Set{ x \\in \\mathds R | f(x)}$"
+      },
+      {
+        "eq": "$A := \\Set{x \\in \\mathds R_{+} | g(x) < x$",
+        "err": "Runaway argument?",
+        "fix": "$A := \\Set{x \\in \\mathds R_{+} | g(x) < x}$"
+      }
+    ]
+  },
+  {
+    "id": 71,
+    "examples": [
+      {
+        "eq": "$A ll{B}$",
+        "err": "ll is a command in math mode.",
+        "fix": "$A \\ll{B}$"
+      },
+      {
+        "eq": "$A gg{B}$",
+        "err": "gg is a command in math mode.",
+        "fix": "$A \\gg{B}$"
+      },
+      {
+        "eq": "$a in{A}$",
+        "err": "in is a command in math mode.",
+        "fix": "$a \\in{A}$"
+      },
+      {
+        "eq": "$A ni{a}$",
+        "err": "ni is a command in math mode.",
+        "fix": "$A \\ni{a}$"
+      },
+      {
+        "eq": "$A + B + 1 not= B + A$",
+        "err": "not is a command in math mode.",
+        "fix": "$A + B + 1 \\not= B + A$"
+      }
+    ]
+  },
+  {
+    "id": 72,
+    "examples": [
+      {
+        "eq": "$A & B$",
+        "err": "Misplaced alignment tab character &.",
+        "fix": "$A \\& B$"
+      },
+      {
+        "eq": "$X & Y$",
+        "err": "Misplaced alignment tab character &.",
+        "fix": "$X \\& Y$"
+      },
+      {
+        "eq": "$p & q$",
+        "err": "Misplaced alignment tab character &.",
+        "fix": "$p \\& q$"
+      },
+      {
+        "eq": "$A & B & C$",
+        "err": "Misplaced alignment tab character &.",
+        "fix": "$A \\& B \\& C$"
+      },
+      {
+        "eq": "$L_1 & L_2 & L_3 & L_4 & L_5$",
+        "err": "Misplaced alignment tab character &.",
+        "fix": "$L_1 \\& L_2 \\& L_3 \\& L_4 \\& L_5$"
+      }
+    ]
+  },
+  {
+    "id": 73,
+    "examples": [
+      {
+        "eq": "$\\Gamma{a,b}$",
+        "err": "a,b is operand of command \\Gamma.",
+        "fix": "$\\Gamma{(a,b)}$"
+      },
+      {
+        "eq": "$\\Theta{x,y}$",
+        "err": "x,y is operand of command \\Theta.",
+        "fix": "$\\Theta{(x,y)}$"
+      },
+      {
+        "eq": "$\\Phi{p,q,r}$",
+        "err": "p,q,r is operand of command \\Phi.",
+        "fix": "$\\Phi{(p,q,r)}$"
+      },
+      {
+        "eq": "$\\Sigma{a,b,c}$",
+        "err": "a,b,c is operand of command \\Sigma.",
+        "fix": "$\\Sigma{(a,b,c)}$"
+      },
+      {
+        "eq": "$\\Omega{m,n,o,p,q}$",
+        "err": "m,n,o,p,q is operand of command \\Omega.",
+        "fix": "$\\Omega{(m,n,o,p,q)}$"
+      }
+    ]
+  },
+  {
+    "id": 74,
+    "examples": [
+      {
+        "eq": "$\\\\vec{X}$",
+        "err": "command \\vec is transferred to string literal unexpectly.",
+        "fix": "$\\vec{X}$"
+      },
+      {
+        "eq": "$\\\\hat{a}$",
+        "err": "command \\hat is transferred to string literal unexpectly.",
+        "fix": "$\\hat{a}$"
+      },
+      {
+        "eq": "$\\\\check{x}$",
+        "err": "command \\check is transferred to string literal unexpectly.",
+        "fix": "$\\check{x}$"
+      },
+      {
+        "eq": "$\\\\tilde{a}$",
+        "err": "command \\tilde is transferred to string literal unexpectly.",
+        "fix": "$\\tilde{a}$"
+      },
+      {
+        "eq": "$f = \\\\bar{x}+\\\\bar{y}$",
+        "err": "command \\bar is transferred to string literal unexpectly.",
+        "fix": "$f = \\bar{x}+\\bar{y}$"
+      }
+    ]
+  },
+  {
+    "id": 75,
+    "examples": [
+      {
+        "eq": "$a_1,a_2,a3,a_4$",
+        "err": "Missing _ : 3",
+        "fix": "$a_1,a_2,a_3,a_4$"
+      },
+      {
+        "eq": "$a1,a_2,a_3,a_4$",
+        "err": "Missing _ : 1",
+        "fix": "$a_1,a_2,a_3,a_4$"
+      },
+      {
+        "eq": "$x_1,x_2,x_3,x4$",
+        "err": "Missing _ : 4",
+        "fix": "$x_1,x_2,x_3,x_4$"
+      },
+      {
+        "eq": "$a_1,a_2,a3,\\ldots,a_n$",
+        "err": "Missing _ : 3",
+        "fix": "$a_1,a_2,a_3,\\ldots,a_n$"
+      },
+      {
+        "eq": "$x_1,x_2,x3,\\ldots,x_n$",
+        "err": "Missing _ : 3",
+        "fix": "$x_1,x_2,x_3,\\ldots,x_n$"
+      }
+    ]
+  },
+  {
+    "id": 76,
+    "examples": [
+      {
+        "eq": "$a^1,a^2,a3,a^4$",
+        "err": "Missing ^ : 3",
+        "fix": "$a^1,a^2,a^3,a^4$"
+      },
+      {
+        "eq": "$a1,a^2,a^3,a^4$",
+        "err": "Missing ^ : 1",
+        "fix": "$a^1,a^2,a^3,a^4$"
+      },
+      {
+        "eq": "$x^1,x^2,x^3,x4$",
+        "err": "Missing ^ : 4",
+        "fix": "$x^1,x^2,x^3,x^4$"
+      },
+      {
+        "eq": "$a^1,a^2,a3,\\ldots,a^n$",
+        "err": "Missing ^ : 3",
+        "fix": "$a^1,a^2,a^3,\\ldots,a^n$"
+      },
+      {
+        "eq": "$x^1,x^2,x^3,x4,\\ldots,x^n$",
+        "err": "Missing ^ : 4",
+        "fix": "$x^1,x^2,x^3,x^4,\\ldots,x^n$"
+      }
+    ]
+  },
+  {
+    "id": 77,
+    "examples": [
+      {
+        "eq": "$a=b**c$",
+        "err": "Extra * inserted.",
+        "fix": "$a=b*c$"
+      },
+      {
+        "eq": "$a=b+c**d$",
+        "err": "Extra * inserted.",
+        "fix": "$a=b+c*d$"
+      },
+      {
+        "eq": "$a=b**c+d$",
+        "err": "Extra * inserted.",
+        "fix": "$a=b*c+d$"
+      },
+      {
+        "eq": "$a=b**c/d$",
+        "err": "Extra * inserted.",
+        "fix": "$a=b*c/d$"
+      },
+      {
+        "eq": "$x=y**z+3+a+b/c+c/d$",
+        "err": "Extra * inserted.",
+        "fix": "$x=y*z+3+a+b/c+c/d$"
+      }
+    ]
+  },
+  {
+    "id": 78,
+    "examples": [
+      {
+        "eq": "$a=b//c$",
+        "err": "Extra / inserted.",
+        "fix": "$a=b/c$"
+      },
+      {
+        "eq": "$a=b+c//d$",
+        "err": "Extra / inserted.",
+        "fix": "$a=b+c/d$"
+      },
+      {
+        "eq": "$a=b//c+d$",
+        "err": "Extra / inserted.",
+        "fix": "$a=b/c+d$"
+      },
+      {
+        "eq": "$a=b//c/d$",
+        "err": "Extra / inserted.",
+        "fix": "$a=b/c/d$"
+      },
+      {
+        "eq": "$x=y//z+3+b*c-d$",
+        "err": "Extra / inserted.",
+        "fix": "$x=y/z+3+b*c-d$"
+      }
+    ]
+  },
+  {
+    "id": 79,
+    "examples": [
+      {
+        "eq": "$/hat{a}$",
+        "err": "Regard / as \\ incorrectly",
+        "fix": "$\\hat{a}$"
+      },
+      {
+        "eq": "$/bar{x}$",
+        "err": "Regard / as \\ incorrectly",
+        "fix": "$\\bar{x}$"
+      },
+      {
+        "eq": "$/check{a}$",
+        "err": "Regard / as \\ incorrectly",
+        "fix": "$\\check{a}$"
+      },
+      {
+        "eq": "$/tilde{a}$",
+        "err": "Regard / as \\ incorrectly",
+        "fix": "$\\tilde{a}$"
+      },
+      {
+        "eq": "$/vec{x}=/vec{y}$",
+        "err": "Regard / as \\ incorrectly",
+        "fix": "$\\vec{x}=\\vec{y}$"
+      }
+    ]
+  },
+  {
+    "id": 80,
+    "examples": [
+      {
+        "eq": "${(1,2,3}$",
+        "err": "Missing ) inserted.",
+        "fix": "${(1,2,3)}$"
+      },
+      {
+        "eq": "${(a,b,c}$",
+        "err": "Missing ) inserted.",
+        "fix": "${(a,b,c)}$"
+      },
+      {
+        "eq": "${(1,2,3,\\ldots,n}$",
+        "err": "Missing ) inserted.",
+        "fix": "${(1,2,3,\\ldots,n)}$"
+      },
+      {
+        "eq": "${(a,b,c,\\ldots,n}$",
+        "err": "Missing ) inserted.",
+        "fix": "${(a,b,c,\\ldots,n)}$"
+      },
+      {
+        "eq": "$\\Gamma{(a,b,c,d,e,f,g,h}$",
+        "err": "Missing ) inserted.",
+        "fix": "$\\Gamma{(a,b,c,d,e,f,g,h)}$"
+      }
+    ]
+  },
+  {
+    "id": 81,
+    "examples": [
+      {
+        "eq": "${1,2,3)}$",
+        "err": "Extra ) inserted.",
+        "fix": "${(1,2,3)}$"
+      },
+      {
+        "eq": "${a,b,c)}$",
+        "err": "Extra ) inserted.",
+        "fix": "${(a,b,c)}$"
+      },
+      {
+        "eq": "${1,2,3,\\ldots,n)}$",
+        "err": "Extra ) inserted.",
+        "fix": "${(1,2,3,\\ldots,n)}$"
+      },
+      {
+        "eq": "${a,b,c,\\ldots,n)}$",
+        "err": "Extra ) inserted.",
+        "fix": "${(a,b,c,\\ldots,n)}$"
+      },
+      {
+        "eq": "$\\Gamma{a,b,c,d,e,f,g,h)}$",
+        "err": "Extra ) inserted.",
+        "fix": "$\\Gamma{(a,b,c,d,e,f,g,h)}$"
+      }
+    ]
+  },
+  {
+    "id": 82,
+    "examples": [
+      {
+        "eq": "$\\frac{1}{2}$",
+        "err": "Display mode expected.",
+        "fix": "$\\displaystyle \\frac{1}{2}$"
+      },
+      {
+        "eq": "$\\sum_{i=1}^n i$",
+        "err": "Display mode expected.",
+        "fix": "$\\displaystyle \\sum_{i=1}^n i$"
+      },
+      {
+        "eq": "$\\frac{x_1}{y_2}$",
+        "err": "Display mode expected.",
+        "fix": "$\\displaystyle \\frac{x_1}{y_2}$"
+      },
+      {
+        "eq": "$\\product_{i=1}^n i$",
+        "err": "Display mode expected.",
+        "fix": "$\\displaystyle \\product_{i=1}^n i$"
+      },
+      {
+        "eq": "$\\int_{1}^{t} \\frac{x+1}{x}dx$",
+        "err": "Display mode expected.",
+        "fix": "$\\displaystyle \\int_{1}^{t} \\frac{x+1}{x}dx$"
+      }
+    ]
+  },
+  {
+    "id": 83,
+    "examples": [
+      {
+        "eq": "$\\left\\{x\\}$",
+        "err": "Missing \\right. inserted.",
+        "fix": "$\\left\\{x\\right\\}$"
+      },
+      {
+        "eq": "$\\left\\{y\\}$",
+        "err": "Missing \\right. inserted.",
+        "fix": "$\\left\\{y\\right\\}$"
+      },
+      {
+        "eq": "$\\left\\{x+y\\}$",
+        "err": "Missing \\right. inserted.",
+        "fix": "$\\left\\{x+y\\right\\}$"
+      },
+      {
+        "eq": "$\\left\\{a+b+c\\}$",
+        "err": "Missing \\right. inserted.",
+        "fix": "$\\left\\{a+b+c\\right\\}$"
+      },
+      {
+        "eq": "$S_{QX}=\\left\\{c\\in N \\lvert U_{c}(X) > U_{c}(Q)\\} $",
+        "err": "Missing \\right. inserted.",
+        "fix": "$S_{QX}=\\left\\{c\\in N \\lvert U_{c}(X) > U_{c}(Q)\\right\\} $"
+      }
+    ]
+  },
+  {
+    "id": 84,
+    "examples": [
+      {
+        "eq": "$\\^{x}$",
+        "err": "Command \\^ invalid in math mode",
+        "fix": "$\\hat{x}$"
+      },
+      {
+        "eq": "$\\^{m}$",
+        "err": "Command \\^ invalid in math mode",
+        "fix": "$\\hat{m}$"
+      },
+      {
+        "eq": "$\\^{x}_y$",
+        "err": "Command \\^ invalid in math mode",
+        "fix": "$\\hat{x}_y$"
+      },
+      {
+        "eq": "$\\^{x}+1$",
+        "err": "Command \\^ invalid in math mode",
+        "fix": "$\\hat{x}+1$"
+      },
+      {
+        "eq": "$\\vec{r}_1=r_1\\^{r}_1=-r_1\\^{e}_r$",
+        "err": "Command \\^ invalid in math mode",
+        "fix": "$\\vec{r}_1=r_1\\hat{r}_1=-r_1\\hat{e}_r$"
+      }
+    ]
+  },
+  {
+    "id": 85,
+    "examples": [
+      {
+        "eq": "$1\u22121=0$",
+        "err": "Package inputenc: Unicode character \u2212 (U+2212)",
+        "fix": "$1-1=0$"
+      },
+      {
+        "eq": "$y=x\u22121$",
+        "err": "Package inputenc: Unicode character \u2212 (U+2212)",
+        "fix": "$y=x-1$"
+      },
+      {
+        "eq": "$a+b\u2212c$",
+        "err": "Package inputenc: Unicode character \u2212 (U+2212)",
+        "fix": "$a+b-c$"
+      },
+      {
+        "eq": "$x=x\u22121$",
+        "err": "Package inputenc: Unicode character \u2212 (U+2212)",
+        "fix": "$x=x-1$"
+      },
+      {
+        "eq": "$f(\\lambda x+(1\u2212\\lambda)y)\\leq \\lambda f(x)+(1\u2212\\lambda)f(y)$",
+        "err": "Package inputenc: Unicode character \u2212 (U+2212)",
+        "fix": "$f(\\lambda x+(1-\\lambda)y)\\leq \\lambda f(x)+(1-\\lambda)f(y)$"
+      }
+    ]
+  },
+  {
+    "id": 86,
+    "examples": [
+      {
+        "eq": "$2\\^x$",
+        "err": "Command \\^ invalid in math mode",
+        "fix": "$2^x$"
+      },
+      {
+        "eq": "$x\\^y$",
+        "err": "Command \\^ invalid in math mode",
+        "fix": "$x^y$"
+      },
+      {
+        "eq": "$x\\^2$",
+        "err": "Command \\^ invalid in math mode",
+        "fix": "$x^2$"
+      },
+      {
+        "eq": "$limits_{x}\\^N$",
+        "err": "Command \\^ invalid in math mode",
+        "fix": "$limits_{x}^N$"
+      },
+      {
+        "eq": "$E(w) = \\frac{1}{2}*\\sum\\limits_{i=1}\\^N t_i (\\phi(x_i)-y_i)^2$",
+        "err": "Command \\^ invalid in math mode",
+        "fix": "$E(w) = \\frac{1}{2}*\\sum\\limits_{i=1}^N t_i (\\phi(x_i)-y_i)^2$"
+      }
+    ]
+  },
+  {
+    "id": 87,
+    "examples": [
+      {
+        "eq": "$$\n\\begin{align}\n\\\\x\n\\end{align}\n$$",
+        "err": "Package amsmath: Erroneous nesting of equation structures;\n(amsmath)                trying to recover with `aligned'.",
+        "fix": "$$\n\\begin{aligned}\n\\\\x\n\\end{aligned}\n$$"
+      },
+      {
+        "eq": "$$\n\\begin{align}\n\\\\y\n\\end{align}\n$$",
+        "err": "Package amsmath: Erroneous nesting of equation structures;\n(amsmath)                trying to recover with `aligned'.",
+        "fix": "$$\n\\begin{aligned}\n\\\\y\n\\end{aligned}\n$$"
+      },
+      {
+        "eq": "$$\n\\begin{align}\n\\\\xx&y\n\\\\y&xx\n\\end{align}\n$$",
+        "err": "Package amsmath: Erroneous nesting of equation structures;\n(amsmath)                trying to recover with `aligned'.",
+        "fix": "$$\n\\begin{aligned}\n\\\\xx&y\n\\\\y&xx\n\\end{aligned}\n$$"
+      },
+      {
+        "eq": "$$\n\\begin{align}\n\\\\f(x)&=1\n\\\\f(z)&=1\n\\end{align}\n$$",
+        "err": "Package amsmath: Erroneous nesting of equation structures;\n(amsmath)                trying to recover with `aligned'.",
+        "fix": "$$\n\\begin{aligned}\n\\\\f(x)&=1\n\\\\f(z)&=1\n\\end{aligned}\n$$"
+      },
+      {
+        "eq": "$$\n\\begin{align}\n\\sum_{i=0}^n i^2 &= \\frac{(n^2+n)(2n+1)}{6} \\\\\ny &= mx+c\n\\end{align}\n$$",
+        "err": "Package amsmath: Erroneous nesting of equation structures;\n(amsmath)                trying to recover with `aligned'.",
+        "fix": "$$\n\\begin{aligned}\n\\sum_{i=0}^n i^2 &= \\frac{(n^2+n)(2n+1)}{6} \\\\\ny &= mx+c\n\\end{aligned}\n$$"
+      }
+    ]
+  },
+  {
+    "id": 88,
+    "examples": [
+      {
+        "eq": "${1,2,3}",
+        "err": "Missing $ inserted.",
+        "fix": "${1,2,3}$"
+      },
+      {
+        "eq": "${4,5,6}",
+        "err": "Missing $ inserted.",
+        "fix": "${4,5,6}$"
+      },
+      {
+        "eq": "${a,b,c}",
+        "err": "Missing $ inserted.",
+        "fix": "${a,b,c}$"
+      },
+      {
+        "eq": "${m,n,p}",
+        "err": "Missing $ inserted.",
+        "fix": "${m,n,p}$"
+      },
+      {
+        "eq": "$=\\frac { { b }^{ 4 } }{ { n }^{ 4 } } \\left.( \\frac { { n }^{ 2 }+2n+1 }{ 4 }  \\right.) =\\frac { { b }^{ 4 } }{ 4 } \\left.( \\frac { { n }^{ 2 }+2n+1 }{ 4 }  \\right.)",
+        "err": "Missing $ inserted.",
+        "fix": "$=\\frac { { b }^{ 4 } }{ { n }^{ 4 } } \\left.( \\frac { { n }^{ 2 }+2n+1 }{ 4 }  \\right.) =\\frac { { b }^{ 4 } }{ 4 } \\left.( \\frac { { n }^{ 2 }+2n+1 }{ 4 }  \\right.)$"
+      }
+    ]
+  },
+  {
+    "id": 89,
+    "examples": [
+      {
+        "eq": "$\\sum\\limit_{1}^2(i)$",
+        "err": "Undefined control sequence\n$\\sum\\ limit",
+        "fix": "$\\sum\\limits_{1}^2(i)$"
+      },
+      {
+        "eq": "$\\prod\\limit_{m}^n(m)$",
+        "err": "Undefined control sequence\n$\\prod\\ limit",
+        "fix": "$\\prod\\limits_{m}^n(m)$"
+      },
+      {
+        "eq": "$\\prod\\limit_{1}^2(i)$",
+        "err": "Undefined control sequence\n$\\prod\\ limit",
+        "fix": "$\\prod\\limits_{1}^2(i)$"
+      },
+      {
+        "eq": "$\\sum\\limit_{x}^y(x+2)$",
+        "err": "Undefined control sequence\n$\\sum\\ limit",
+        "fix": "$\\sum\\limits_{x}^y(x+2)$"
+      },
+      {
+        "eq": "\\begin{align}\nL(\\theta; y) = \\prod\\limit_{j=1}^n (\\theta_j e^{-\\theta_j y_j})^{\\delta_j}(e^{-\\theta_j y_j})^{1 - \\delta_j}\n\\label{12}\n\\end{align}",
+        "err": "Undefined control sequence\n$\\prod\\ limit",
+        "fix": "\\begin{align}\nL(\\theta; y) = \\prod\\limits_{j=1}^n (\\theta_j e^{-\\theta_j y_j})^{\\delta_j}(e^{-\\theta_j y_j})^{1 - \\delta_j}\n\\label{12}\n\\end{align}"
+      }
+    ]
+  }
+]

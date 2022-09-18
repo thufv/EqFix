@@ -1,0 +1,1652 @@
+[
+    {
+        "id": 1,
+        "examples": [
+            {
+                "fix": "java file",
+                "eq": "java file.java",
+                "err": "could not find or load main class"
+            },
+            {
+                "fix": "java bcd",
+                "eq": "java bcd.java",
+                "err": "could not find or load main class"
+            },
+            {
+                "fix": "java a",
+                "eq": "java a.java",
+                "err": "could not find or load main class"
+            }
+        ]
+    },
+    {
+        "id": 2,
+        "examples": [
+            {
+                "fix": "sudo apt-get install abc",
+                "eq": "apt-get abc",
+                "err": "command not found"
+            },
+            {
+                "fix": "sudo apt-get install qwerty",
+                "eq": "apt-get qwerty",
+                "err": "command not found"
+            },
+            {
+                "fix": "sudo apt-get install xyzz",
+                "eq": "apt-get xyzz",
+                "err": "command not found"
+            }
+        ]
+    },
+    {
+        "id": 3,
+        "examples": [
+            {
+                "fix": "brew upgrade -all",
+                "eq": "brew upgrade",
+                "err": "Warning: brew upgrade with no arguments will change behaviour soon!"
+            },
+            {
+                "fix": "brew upgrade -all",
+                "eq": "brew upgrade",
+                "err": "Warning: brew upgrade with no arguments will change behaviour soon!"
+            },
+            {
+                "fix": "brew upgrade -all",
+                "eq": "brew upgrade",
+                "err": "Warning: brew upgrade with no arguments will change behaviour soon!"
+            }
+        ]
+    },
+    {
+        "id": 4,
+        "examples": [
+            {
+                "fix": "cargo build",
+                "eq": "cargo",
+                "err": ""
+            },
+            {
+                "fix": "cargo build",
+                "eq": "cargo",
+                "err": ""
+            },
+            {
+                "fix": "cargo build",
+                "eq": "cargo",
+                "err": ""
+            }
+        ]
+    },
+    {
+        "id": 5,
+        "examples": [
+            {
+                "fix": "bla",
+                "eq": "cargo bla",
+                "err": "'No such subcommand' in command.stderr and 'Did you mean bla')"
+            },
+            {
+                "fix": "stuff",
+                "eq": "cargo stuff",
+                "err": "'No such subcommand' in command.stderr and 'Did you mean stuff')"
+            },
+            {
+                "fix": "other42",
+                "eq": "cargo other42",
+                "err": "'No such subcommand' in command.stderr and 'Did you mean other42')"
+            }
+        ]
+    },
+    {
+        "id": 6,
+        "examples": [
+            {
+                "fix": "mkdir files; cd files",
+                "eq": "cd files",
+                "err": "-bash: cd: files: no such file or directory"
+            },
+            {
+                "fix": "mkdir code; cd code",
+                "eq": "cd code",
+                "err": "-bash: cd: code: no such file or dir"
+            },
+            {
+                "fix": "mkdir xray; cd xray",
+                "eq": "cd xray",
+                "err": "-bash: cd: xray: no such file or dir"
+            }
+        ]
+    },
+    {
+        "id": 7,
+        "examples": [
+            {
+                "fix": "cd ..",
+                "eq": "cd..",
+                "err": "-bash: cd..: command not found"
+            },
+            {
+                "fix": "cd ..",
+                "eq": "cd..",
+                "err": "-bash: cd..: command not found"
+            },
+            {
+                "fix": "cd ..",
+                "eq": "cd..",
+                "err": "-bash: cd..: command not found"
+            }
+        ]
+    },
+    {
+        "id": 8,
+        "examples": [
+            {
+                "fix": "cp -r src dst",
+                "eq": "cp src dst",
+                "err": "cp: omitting directory `fbxrd'"
+            },
+            {
+                "fix": "cp -r from to",
+                "eq": "cp from to",
+                "err": "cp: omitting directory `qwn'"
+            },
+            {
+                "fix": "cp -r a b",
+                "eq": "cp a b",
+                "err": "cp: omitting directory `xyzy'"
+            }
+        ]
+    },
+    {
+        "id": 9,
+        "examples": [
+            {
+                "fix": "g++ -std=c++11 blabla",
+                "eq": "g++ blabla.cpp",
+                "err": "In file included from /usr/include/c++/4.4/random:35, from blabla.cpp:3: /usr/include/c++/4.4/c++0x_warning.h:31:2: error: #error This file requires compiler and library support for the upcoming ISO C++ standard, C++0x. This support is currently experimental, and must be enabled with the -std=c++0x or -std=gnu++0x compiler options."
+            },
+            {
+                "fix": "g++ -std=c++11 etc",
+                "eq": "g++ etc.cpp",
+                "err": "In file included from /usr/include/c++/4.4/random:35, from etc.cpp:3: /usr/include/c++/4.4/c++0x_warning.h:31:2: error: #error This file requires compiler and library support for the upcoming ISO C++ standard, C++0x. This support is currently experimental, and must be enabled with the -std=c++0x or -std=gnu++0x compiler options."
+            },
+            {
+                "fix": "g++ -std=c++11 xyzz",
+                "eq": "g++ xyzz.cpp",
+                "err": "In file included from /usr/include/c++/4.4/random:35, from xyzz.cpp:3: /usr/include/c++/4.4/c++0x_warning.h:31:2: error: #error This file requires compiler and library support for the upcoming ISO C++ standard, C++0x. This support is currently experimental, and must be enabled with the -std=c++0x or -std=gnu++0x compiler options."
+            }
+        ]
+    },
+    {
+        "id": 10,
+        "examples": [
+            {
+                "fix": "clang++ -std=c++11 abcabc",
+                "eq": "clang++ abcabc",
+                "err": "abcabc.cpp:2:3: warning: 'auto' type specifier is a C++11 extension [-Wc++11-extensions]"
+            },
+            {
+                "fix": "clang++ -std=c++11 cbad",
+                "eq": "clang++ cbad",
+                "err": "cbad.cpp:2:3: warning: 'auto' type specifier is a C++11 extension [-Wc++11-extensions]"
+            },
+            {
+                "fix": "clang++ -std=c++11 xyz",
+                "eq": "clang++ xyz",
+                "err": "xyz.cpp:2:3: warning: 'auto' type specifier is a C++11 extension [-Wc++11-extensions]"
+            }
+        ]
+    },
+    {
+        "id": 11,
+        "examples": [
+            {
+                "fix": "dos2unix abcabc.sh; bash abcabc.sh",
+                "eq": "bash abcabc.sh",
+                "err": "/etc/init.d/abcabc.sh: line 2: $'\r': command not found /etc/init.d/abcabc.sh:"
+            },
+            {
+                "fix": "dos2unix cbad.sh; bash cbad.sh",
+                "eq": "bash cbad.sh",
+                "err": "/etc/cbad.sh: line 13: $'\r': command not found /etc/cbad.sh"
+            },
+            {
+                "fix": "dos2unix xyz.sh; bash xyz.sh",
+                "eq": "bash xyz.sh",
+                "err": "/etc/etc/etc/xyz.sh: line 134: $'\r': command not found /etc/etc/etc/xyz.sh"
+            }
+        ]
+    },
+    {
+        "id": 12,
+        "examples": [
+            {
+                "fix": "chmod +x manage.py; ./manage.py",
+                "eq": "./manage.py",
+                "err": "-bash: ./manage.py: Permission denied"
+            },
+            {
+                "fix": "chmod +x asdf.py; ./asdf.py",
+                "eq": "./asdf.py",
+                "err": "-bash: ./asdf.py: Permission denied"
+            },
+            {
+                "fix": "chmod +x xyz.py; ./xyz.py",
+                "eq": "./xyz.py",
+                "err": "-bash: ./xyz.py: Permission denied"
+            }
+        ]
+    },
+    {
+        "id": 13,
+        "examples": [
+            {
+                "fix": "python manage.py",
+                "eq": "./manage.py",
+                "err": "-bash: ./manage.py: Permission denied"
+            },
+            {
+                "fix": "python asdf.py",
+                "eq": "./asdf.py",
+                "err": "-bash: ./asdf.py: Permission denied"
+            },
+            {
+                "fix": "python xyz.py",
+                "eq": "./xyz.py",
+                "err": "-bash: ./xyz.py: Permission denied"
+            }
+        ]
+    },
+    {
+        "id": 14,
+        "examples": [
+            {
+                "fix": "./manage.py migrate myapp --fake",
+                "eq": "./manage.py migrate myapp",
+                "err": "django.db.utils.DatabaseError: table 'myapp_tablename' already exists"
+            },
+            {
+                "fix": "./manage.py migrate anapp1 --fake",
+                "eq": "./manage.py migrate anapp1",
+                "err": "django.db.utils.DatabaseError: table 'anapp1_tablename2' already exists"
+            },
+            {
+                "fix": "./manage.py migrate xyzapp11 --fake",
+                "eq": "./manage.py migrate xyzapp11",
+                "err": "django.db.utils.DatabaseError: table 'xyzapp11_tablename22' already exists"
+            }
+        ]
+    },
+    {
+        "id": 15,
+        "examples": [
+            {
+                "fix": "python manage.py migrate reserve --delete-ghost-migrations",
+                "eq": "python manage.py migrate reserve",
+                "err": "south.exceptions.GhostMigrations: ! These migrations are in the database but not on disk: <reserve: 0002_initial> ! with the south_migrationhistory table, or pass --delete-ghost-migrations"
+            },
+            {
+                "fix": "python manage.py migrate reserve --delete-ghost-migrations",
+                "eq": "python manage.py migrate reserve",
+                "err": "south.exceptions.GhostMigrations: ! These migrations are in the database but not on disk: <reserve: 0002_initial> ! with the south_migrationhistory table, or pass --delete-ghost-migrations"
+            },
+            {
+                "fix": "python manage.py migrate reserve --delete-ghost-migrations",
+                "eq": "python manage.py migrate reserve",
+                "err": "south.exceptions.GhostMigrations: ! These migrations are in the database but not on disk: <reserve: 0002_initial> ! with the south_migrationhistory table, or pass --delete-ghost-migrations"
+            }
+        ]
+    },
+    {
+        "id": 16,
+        "examples": [
+            {
+                "fix": "git add file; git commit file",
+                "eq": "git commit file",
+                "err": "error: pathspec 'application/libraries/file' did not match any file(s) known to git."
+            },
+            {
+                "fix": "git add afile1; git commit afile1",
+                "eq": "git commit afile1",
+                "err": "error: pathspec 'application/libra/afile1' did not match any file(s) known to git."
+            },
+            {
+                "fix": "git add bfile12; git commit bfile12",
+                "eq": "git commit bfile12",
+                "err": "error: pathspec 'application/libra2/bfile12' did not match any file(s) known to git."
+            }
+        ]
+    },
+    {
+        "id": 17,
+        "examples": [
+            {
+                "fix": "git branch -D testing",
+                "eq": "git branch -d testing",
+                "err": "error: The branch 'testing' is not fully merged. If you are sure you want to delete it, run 'git branch -D testing'."
+            },
+            {
+                "fix": "git branch -D featurebranch",
+                "eq": "git branch -d featurebranch",
+                "err": "error: The branch 'featurebranch' is not fully merged. If you are sure you want to delete it, run 'git branch -D featurebranch'."
+            },
+            {
+                "fix": "git branch -D bugfix",
+                "eq": "git branch -d bugfix",
+                "err": "error: The branch 'bugfix' is not fully merged. If you are sure you want to delete it, run 'git branch -D bugfix'."
+            }
+        ]
+    },
+    {
+        "id": 18,
+        "examples": [
+            {
+                "fix": "git branch --delete list; git branch",
+                "eq": "git branch list",
+                "err": ""
+            },
+            {
+                "fix": "git branch --delete somelist1; git branch",
+                "eq": "git branch somelist1",
+                "err": ""
+            },
+            {
+                "fix": "git branch --delete abc; git branch",
+                "eq": "git branch abc",
+                "err": ""
+            }
+        ]
+    },
+    {
+        "id": 19,
+        "examples": [
+            {
+                "fix": "git diff --staged",
+                "eq": "git diff",
+                "err": ""
+            },
+            {
+                "fix": "git diff --staged",
+                "eq": "git diff",
+                "err": ""
+            },
+            {
+                "fix": "git diff --staged",
+                "eq": "git diff",
+                "err": ""
+            }
+        ]
+    },
+    {
+        "id": 20,
+        "examples": [
+            {
+                "fix": "git reset abc; git checkout abcabc",
+                "eq": "git status abcabc",
+                "err": "(use 'git reset HEAD <file>...' to unstage)"
+            },
+            {
+                "fix": "git reset cba; git checkout cbad",
+                "eq": "git status cbad",
+                "err": "(use 'git reset HEAD <file>...' to unstage)"
+            },
+            {
+                "fix": "git reset xyz; git checkout xyz",
+                "eq": "git status xyz",
+                "err": "(use 'git reset HEAD <file>...' to unstage)"
+            }
+        ]
+    },
+    {
+        "id": 21,
+        "examples": [
+            {
+                "fix": "git clone abcabc",
+                "eq": "git pull abcabc",
+                "err": "fatal: Not a git repository' in command.stderr and 'Stopping at filesystem boundary (GIT_DISCOVERY_ACROSS_FILESYSTEM not set)."
+            },
+            {
+                "fix": "git clone cbad",
+                "eq": "git pull cbad",
+                "err": "fatal: Not a git repository' in command.stderr and 'Stopping at filesystem boundary (GIT_DISCOVERY_ACROSS_FILESYSTEM not set)."
+            },
+            {
+                "fix": "git clone xyz",
+                "eq": "git pull xyz",
+                "err": "fatal: Not a git repository' in command.stderr and 'Stopping at filesystem boundary (GIT_DISCOVERY_ACROSS_FILESYSTEM not set)."
+            }
+        ]
+    },
+    {
+        "id": 22,
+        "examples": [
+            {
+                "fix": "git push --force",
+                "eq": "git push",
+                "err": "To https://github.com/lorisdanto/testRepo.git! [rejected]        master -> master (non-fast-forward) error: failed to push some refs to 'https://github.com/lorisdanto/testRepo.git' hint: Updates were rejected because the tip of your current branch is behind hint: its remote counterpart. Integrate the remote changes (e.g. hint: 'git pull ...') before pushing again. hint: See the 'Note about fast-forwards' in 'git push --help' for details."
+            },
+            {
+                "fix": "git push --force",
+                "eq": "git push",
+                "err": "To https://github.com/MichaelBVaughn/someOtherThing.git! [rejected]        master -> master (non-fast-forward) error: failed to push some refs to 'https://github.com/MichaelBVaughn/someOtherThing.git' hint: Updates were rejected because the tip of your current branch is behind hint: its remote counterpart. Integrate the remote changes (e.g. hint: 'git pull ...') before pushing again. hint: See the 'Note about fast-forwards' in 'git push --help' for details."
+            },
+            {
+                "fix": "git push --force",
+                "eq": "git push",
+                "err": "To https://bitbucket.org/MichaelBVaughn/aMiscProj.git! [rejected]        master -> master (non-fast-forward) error: failed to push some refs to 'https://bitbucket.org/MichaelBVaughn/aMiscProj.git' hint: Updates were rejected because the tip of your current branch is behind hint: its remote counterpart. Integrate the remote changes (e.g. hint: 'git pull ...') before pushing again. hint: See the 'Note about fast-forwards' in 'git push --help' for details."
+            }
+        ]
+    },
+    {
+        "id": 23,
+        "examples": [
+            {
+                "fix": "git pull",
+                "eq": "git push",
+                "err": "To https://github.com/MichaelBVaughn/testRepo.git! [rejected]        master -> master (non-fast-forward) error: failed to push some refs to 'https://github.com/MichaelBVaughn/testRepo.git' hint: Updates were rejected because the tip of your current branch is behind hint: its remote counterpart. Integrate the remote changes (e.g. hint: 'git pull ...') before pushing again. hint: See the 'Note about fast-forwards' in 'git push --help' for details."
+            },
+            {
+                "fix": "git pull",
+                "eq": "git push",
+                "err": "To https://github.com/MichaelBVaughn/someOtherThing.git! [rejected]        master -> master (non-fast-forward) error: failed to push some refs to 'https://github.com/MichaelBVaughn/someOtherThing.git' hint: Updates were rejected because the tip of your current branch is behind hint: its remote counterpart. Integrate the remote changes (e.g. hint: 'git pull ...') before pushing again. hint: See the 'Note about fast-forwards' in 'git push --help' for details."
+            },
+            {
+                "fix": "git pull",
+                "eq": "git push",
+                "err": "To https://github.com/MichaelBVaughn/aMiscProj.git! [rejected]        master -> master (non-fast-forward) error: failed to push some refs to 'https://github.com/MichaelBVaughn/aMiscProj.git' hint: Updates were rejected because the tip of your current branch is behind hint: its remote counterpart. Integrate the remote changes (e.g. hint: 'git pull ...') before pushing again. hint: See the 'Note about fast-forwards' in 'git push --help' for details."
+            }
+        ]
+    },
+    {
+        "id": 24,
+        "examples": [
+            {
+                "fix": "git stash",
+                "eq": "git pull",
+                "err": "Updating 1..2 error: Your local changes to the following files would be overwritten by merge: foo2.txt Please, commit your changes or stash them before you can merge. Aborting"
+            },
+            {
+                "fix": "git stash",
+                "eq": "git pull",
+                "err": "Updating 40..50 error: Your local changes to the following files would be overwritten by merge: bar.txt Please, commit your changes or stash them before you can merge. Aborting"
+            },
+            {
+                "fix": "git stash",
+                "eq": "git pull",
+                "err": "Updating 200..501 error: Your local changes to the following files would be overwritten by merge: et.txt Please, commit your changes or stash them before you can merge. Aborting"
+            }
+        ]
+    },
+    {
+        "id": 25,
+        "examples": [
+            {
+                "fix": "git add . --all",
+                "eq": "git add . -all",
+                "err": ""
+            },
+            {
+                "fix": "git add . --all",
+                "eq": "git add . -all",
+                "err": ""
+            },
+            {
+                "fix": "git add . --all",
+                "eq": "git add . -all",
+                "err": ""
+            }
+        ]
+    },
+    {
+        "id": 26,
+        "examples": [
+            {
+                "fix": "git checkout -f gh-pages",
+                "eq": "git checkout gh-pages",
+                "err": "error: Your local changes to the following files would be overwritten by checkout: somefile.txt, Please, commit your changes or stash them before you can switch branches."
+            },
+            {
+                "fix": "git checkout -f proj",
+                "eq": "git checkout proj",
+                "err": "error: Your local changes to the following files would be overwritten by checkout: abc.java, Please, commit your changes or stash them before you can switch branches."
+            },
+            {
+                "fix": "git checkout -f bravo",
+                "eq": "git checkout bravo",
+                "err": "error: Your local changes to the following files would be overwritten by checkout: xyz.fs, Please, commit your changes or stash them before you can switch branches."
+            }
+        ]
+    },
+    {
+        "id": 27,
+        "examples": [
+            {
+                "fix": "git reset --hard; git checkout gh-pages",
+                "eq": "git checkout gh-pages",
+                "err": "error: Your local changes to the following files would be overwritten by checkout: somefile.txt, Please, commit your changes or stash them before you can switch branches."
+            },
+            {
+                "fix": "git reset --hard; git checkout proj",
+                "eq": "git checkout proj",
+                "err": "error: Your local changes to the following files would be overwritten by checkout: abc.java, Please, commit your changes or stash them before you can switch branches."
+            },
+            {
+                "fix": "git reset --hard; git checkout bravo",
+                "eq": "git checkout bravo",
+                "err": "error: Your local changes to the following files would be overwritten by checkout: xyz.fs, Please, commit your changes or stash them before you can switch branches."
+            }
+        ]
+    },
+    {
+        "id": 28,
+        "examples": [
+            {
+                "fix": "go run blabla.go",
+                "eq": "go run blabla",
+                "err": "error: go run: no go files listed"
+            },
+            {
+                "fix": "go run abcd.go",
+                "eq": "go run abcd",
+                "err": "error: go run: no go files listed"
+            },
+            {
+                "fix": "go run xyz.go",
+                "eq": "go run xyz",
+                "err": "error: go run: no go files listed"
+            }
+        ]
+    },
+    {
+        "id": 29,
+        "examples": [
+            {
+                "fix": "heroku lock",
+                "eq": "heroku luck",
+                "err": "!    `luck` is not a heroku command. !    Perhaps you meant `lock`. !    See `heroku help` for a list of available commands."
+            },
+            {
+                "fix": "heroku da",
+                "eq": "heroku ad",
+                "err": "!    `ad` is not a heroku command. !    Perhaps you meant `da`. !    See `heroku help` for a list of available commands."
+            },
+            {
+                "fix": "heroku cba",
+                "eq": "heroku abc",
+                "err": "!    `abc` is not a heroku command. !    Perhaps you meant `cba`. !    See `heroku help` for a list of available commands."
+            }
+        ]
+    },
+    {
+        "id": 30,
+        "examples": [
+            {
+                "fix": "lein repl",
+                "eq": "lein ropl",
+                "err": "'ropl' is not a task. See 'lein help'. Did you mean this? repl"
+            },
+            {
+                "fix": "lein do",
+                "eq": "lein od",
+                "err": "'od' is not a task. See 'lein help'. Did you mean this? do"
+            },
+            {
+                "fix": "lein jar",
+                "eq": "lein bar",
+                "err": "'bar' is not a task. See 'lein help'. Did you mean this? jar"
+            }
+        ]
+    },
+    {
+        "id": 31,
+        "examples": [
+            {
+                "fix": "ls -lah .blabla",
+                "eq": "ls -l .blabla",
+                "err": ""
+            },
+            {
+                "fix": "ls -lah .abcd",
+                "eq": "ls -l .abcd",
+                "err": ""
+            },
+            {
+                "fix": "ls -lah .xyz",
+                "eq": "ls -l .xyz",
+                "err": ""
+            }
+        ]
+    },
+    {
+        "id": 32,
+        "examples": [
+            {
+                "fix": "grep blabla",
+                "eq": "grep blabla",
+                "err": "blabla is a directory"
+            },
+            {
+                "fix": "grep abcd",
+                "eq": "grep abcd",
+                "err": "abcd is a directory"
+            },
+            {
+                "fix": "grep xyz",
+                "eq": "grep xyz",
+                "err": "xyz is a directory"
+            }
+        ]
+    },
+    {
+        "id": 33,
+        "examples": [
+            {
+                "fix": "./cmd.sh",
+                "eq": "cmd.sh",
+                "err": "-bash: cmd.sh: command not found"
+            },
+            {
+                "fix": "./abcc.sh",
+                "eq": "abcc.sh",
+                "err": "-bash: abcc.sh: command not found"
+            },
+            {
+                "fix": "./scanner.sh",
+                "eq": "scanner.sh",
+                "err": "-bash: scanner.sh: command not found"
+            }
+        ]
+    },
+    {
+        "id": 34,
+        "examples": [
+            {
+                "fix": "java foo",
+                "eq": "java foo.java",
+                "err": "Error: Could not find or load main class foo.java"
+            },
+            {
+                "fix": "java xyzz",
+                "eq": "java xyzz.java",
+                "err": "Error: Could not find or load main class xyzz.java"
+            },
+            {
+                "fix": "java abcdef",
+                "eq": "java abcdef.java",
+                "err": "Error: Could not find or load main class abcdef.java"
+            }
+        ]
+    },
+    {
+        "id": 35,
+        "examples": [
+            {
+                "fix": "javac foo.java",
+                "eq": "javac foo",
+                "err": "error: Class names, 'foo', are only accepted if annotation processing is explicitly requested 1 error"
+            },
+            {
+                "fix": "javac barr.java",
+                "eq": "javac barr",
+                "err": "error: Class names, 'barr', are only accepted if annotation processing is explicitly requested 1 error"
+            },
+            {
+                "fix": "javac yadda.java",
+                "eq": "javac yadda",
+                "err": "error: Class names, 'yadda', are only accepted if annotation processing is explicitly requested 1 error"
+            }
+        ]
+    },
+    {
+        "id": 36,
+        "examples": [
+            {
+                "fix": "man mkdir",
+                "eq": "manmkdir",
+                "err": "-bash: manmkdir: command not found"
+            },
+            {
+                "fix": "man ls",
+                "eq": "manls",
+                "err": "-bash: manls: command not found"
+            },
+            {
+                "fix": "man stat",
+                "eq": "manstat",
+                "err": "-bash: manstat: command not found"
+            }
+        ]
+    },
+    {
+        "id": 37,
+        "examples": [
+            {
+                "fix": "mkdir -p a/b",
+                "eq": "mkdir a/b",
+                "err": "mkdir: cannot create directory '/a' : no such file or directory"
+            },
+            {
+                "fix": "mkdir -p bc/cd",
+                "eq": "mkdir bc/cd",
+                "err": "mkdir: cannot create directory '/bc' : no such file or directory"
+            },
+            {
+                "fix": "mkdir -p xy/yzz",
+                "eq": "mkdir xy/yzz",
+                "err": "mkdir: cannot create directory '/xy' : no such file or directory"
+            }
+        ]
+    },
+    {
+        "id": 38,
+        "examples": [
+            {
+                "fix": "mkdir -p dir; mv a.txt dir/b.txt",
+                "eq": "mv a.txt dir/b.txt",
+                "err": "cannot move 'a.txt' to 'dir/b.txt': Not a directory"
+            },
+            {
+                "fix": "mkdir -p 1abc; mv xyz.fs 1abc/cd.fs",
+                "eq": "mv xyz.fs 1abc/cd.fs",
+                "err": "cannot move 'xyz.fs' to '1abc/cd.fs': Not a directory"
+            },
+            {
+                "fix": "mkdir -p somestuff; mv file.tar somestuff/bcd2.tar",
+                "eq": "mv file.tar somestuff/bcd2.tar",
+                "err": "cannot move 'file.tar' to 'somestuff/bcd2.tar': Not a directory"
+            }
+        ]
+    },
+    {
+        "id": 39,
+        "examples": [
+            {
+                "fix": "mkdir -p dir; cp a.txt dir/b.txt",
+                "eq": "cp a.txt dir/b.txt",
+                "err": "cannot move 'a.txt' to 'dir/b.txt': Not a directory"
+            },
+            {
+                "fix": "mkdir -p abcde; cp xyz.fs abcde/cd.fsharp",
+                "eq": "cp xyz.fs abcde/cd.fsharp",
+                "err": "cannot move 'xyz/fs' to 'abcde/cd.fsharp: Not a directory"
+            },
+            {
+                "fix": "mkdir -p somestuff; cp file.tar somestuff/bcd2.tar",
+                "eq": "cp file.tar somestuff/bcd2.tar",
+                "err": "cannot move 'file.tar' to 'somestuff/bcd2.tar': Not a directory"
+            }
+        ]
+    },
+    {
+        "id": 40,
+        "examples": [
+            {
+                "fix": "open http://www.a.com",
+                "eq": "open www.a.com",
+                "err": "The file /Users/lorisdanto/www.a.com does not exist. Perhaps you meant 'http://www.a.com'?"
+            },
+            {
+                "fix": "open http://www.bcd.com",
+                "eq": "open www.bcd.com",
+                "err": "The file /Users/bob/www.bcd.com does not exist. Perhaps you meant 'http://www.bcd.com'?"
+            },
+            {
+                "fix": "open http://www.cdef.com",
+                "eq": "open www.cdef.com",
+                "err": "The file /Users/sumit/www.cde.com does not exist. Perhaps you meant 'http://www.cdef.com'?"
+            }
+        ]
+    },
+    {
+        "id": 41,
+        "examples": [
+            {
+                "fix": "python blabla.py",
+                "eq": "python blabla",
+                "err": "python: can't open file 'blabla': [Errno 2] No such file or directory"
+            },
+            {
+                "fix": "python xyzz.py",
+                "eq": "python xyzz",
+                "err": "python: can't open file 'xyzz': [Errno 2] No such file or directory"
+            },
+            {
+                "fix": "python abc.py",
+                "eq": "python abc",
+                "err": "python: can't open file 'abc': [Errno 2] No such file or directory"
+            }
+        ]
+    },
+    {
+        "id": 42,
+        "examples": [
+            {
+                "fix": "rm -rf blabla",
+                "eq": "rm blabla",
+                "err": "rm: blabla: is a directory"
+            },
+            {
+                "fix": "rm -rf xyzz",
+                "eq": "rm xyzz",
+                "err": "rm: xyzz: is a directory"
+            },
+            {
+                "fix": "rm -rf abc",
+                "eq": "rm abc",
+                "err": "rm: abc: is a directory"
+            }
+        ]
+    },
+    {
+        "id": 43,
+        "examples": [
+            {
+                "fix": "pip install",
+                "eq": "pip instol",
+                "err": "ERROR: unknown command 'instol' - maybe you meant 'install'"
+            },
+            {
+                "fix": "pip zzyx",
+                "eq": "pip xyzz",
+                "err": "ERROR: unknown command 'xyzz' - maybe you meant 'zzyx'"
+            },
+            {
+                "fix": "pip cba",
+                "eq": "pip abc",
+                "err": "ERROR: unknown command 'abc' - maybe you meant 'cba'"
+            }
+        ]
+    },
+    {
+        "id": 44,
+        "examples": [
+            {
+                "fix": "sed aaa/bbb/ file.txt",
+                "eq": "sed aaa/bbb file.txt",
+                "err": "sed: -e expression #1, char 53: unterminated `s' command"
+            },
+            {
+                "fix": "sed ca/bbc/ arthur.fs",
+                "eq": "sed ca/bbc arthur.fs",
+                "err": "sed: -e expression #1, char 6: unterminated `s' command"
+            },
+            {
+                "fix": "sed xy/zy/ loris1b.py",
+                "eq": "sed xy/zy loris1b.py",
+                "err": "sed: -e expression #1, char 427: unterminated `s' command"
+            }
+        ]
+    },
+    {
+        "id": 45,
+        "examples": [
+            {
+                "fix": "sudo mknod blabla b 1 2",
+                "eq": "mknod blabla b 1 2",
+                "err": "mknod: blabla: operation not permitted"
+            },
+            {
+                "fix": "sudo mknod qwe b 1 2",
+                "eq": "mknod qwe b 1 2",
+                "err": "mknod: qwe: operation not permitted"
+            },
+            {
+                "fix": "sudo mknod xyzz b 1 2",
+                "eq": "mknod xyzz b 1 2",
+                "err": "mknod: xyzz: operation not permitted"
+            }
+        ]
+    },
+    {
+        "id": 46,
+        "examples": [
+            {
+                "fix": "py.test",
+                "eq": "test.py",
+                "err": "command not found"
+            },
+            {
+                "fix": "py.test",
+                "eq": "test.py",
+                "err": "command not found"
+            },
+            {
+                "fix": "py.test",
+                "eq": "test.py",
+                "err": "command not found"
+            }
+        ]
+    },
+    {
+        "id": 47,
+        "examples": [
+            {
+                "fix": "tmux alp",
+                "eq": "tmux blabla",
+                "err": "could be alp"
+            },
+            {
+                "fix": "tmux beta",
+                "eq": "tmux abc",
+                "err": "could be beta"
+            },
+            {
+                "fix": "tmux xray2",
+                "eq": "tmux xyzz",
+                "err": "could be xray2"
+            }
+        ]
+    },
+    {
+        "id": 48,
+        "examples": [
+            {
+                "fix": "vagrant up",
+                "eq": "vagrant blabla",
+                "err": "VM must be running to open SSH connection. Run `vagrant up` to start the virtual machine."
+            },
+            {
+                "fix": "vagrant up",
+                "eq": "vagrant abcd",
+                "err": "VM must be running to open SSH connection. Run `vagrant up` to start the virtual machine."
+            },
+            {
+                "fix": "vagrant up",
+                "eq": "vagrant xyz",
+                "err": "VM must be running to open SSH connection. Run `vagrant up` to start the virtual machine."
+            }
+        ]
+    },
+    {
+        "id": 49,
+        "examples": [
+            {
+                "fix": "mkdir -p a; touch a/b.txt",
+                "eq": "touch a/b.txt",
+                "err": "touch: a/b.txt: no such file or dir"
+            },
+            {
+                "fix": "mkdir -p gamma; touch gamma/beta.jpg",
+                "eq": "touch gamma/beta.jpg",
+                "err": "touch: gamma/beta.jpg: no such file or dir"
+            },
+            {
+                "fix": "mkdir -p go; touch go/air.fs",
+                "eq": "touch go/air.fs",
+                "err": "touch: go/air.fs: no such file or dir"
+            }
+        ]
+    },
+    {
+        "id": 50,
+        "examples": [
+            {
+                "fix": "tsuru login",
+                "eq": "tsuru app-abcabcabc",
+                "err": "You're not authenticated or your session has expired. Please use 'login' command for authentication"
+            },
+            {
+                "fix": "tsuru login",
+                "eq": "tsuru pool-xyzz",
+                "err": "You're not authenticated or your session has expired. Please use 'login' command for authentication"
+            },
+            {
+                "fix": "tsuru login",
+                "eq": "tsuru prog-log",
+                "err": "You're not authenticated or your session has expired. Please use 'login' command for authentication"
+            }
+        ]
+    },
+    {
+        "id": 51,
+        "examples": [
+            {
+                "fix": "abcdfe",
+                "eq": "abcdef",
+                "err": "unkown command: Did you mean abcdfe"
+            },
+            {
+                "fix": "ls",
+                "eq": "sl",
+                "err": "unkown command: Did you mean ls"
+            },
+            {
+                "fix": "java",
+                "eq": "jara",
+                "err": "unkown command: Did you mean java"
+            }
+        ]
+    },
+    {
+        "id": 52,
+        "examples": [
+            {
+                "fix": "git config --global core.excludesfile ~/.gitignore_global",
+                "eq": "git config --global core.excludefile .gitignore_global",
+                "err": ".gitignore not updated"
+            },
+            {
+                "fix": "git config --global core.excludesfile ~/.gitignore_global",
+                "eq": "git config --global core.excludefile .gitignore_global",
+                "err": ".gitignore not updated"
+            },
+            {
+                "fix": "git config --global core.excludesfile ~/.gitignore_global",
+                "eq": "git config --global core.excludefile .gitignore_global",
+                "err": ".gitignore not updated"
+            }
+        ]
+    },
+    {
+        "id": 53,
+        "examples": [
+            {
+                "fix": "git push origin --delete bugfix",
+                "eq": "git branch -d remotes/origin/bugfix",
+                "err": "failed to delete remote branch"
+            },
+            {
+                "fix": "git push origin --delete prog",
+                "eq": "git branch -d remotes/origin/prog",
+                "err": "failed to delete remote branch"
+            },
+            {
+                "fix": "git push origin --delete xyz",
+                "eq": "git branch -d remotes/origin/xyz",
+                "err": "failed to delete remote branch"
+            }
+        ]
+    },
+    {
+        "id": 54,
+        "examples": [
+            {
+                "fix": "git push origin --delete bugfix",
+                "eq": "git branch -rd origin/bugfix",
+                "err": "failed to delete remote branch"
+            },
+            {
+                "fix": "git push origin --delete prog",
+                "eq": "git branch -rd origin/prog",
+                "err": "failed to delete remote branch"
+            },
+            {
+                "fix": "git push origin --delete xyz",
+                "eq": "git branch -rd origin/xyz",
+                "err": "failed to delete remote branch"
+            }
+        ]
+    },
+    {
+        "id": 55,
+        "examples": [
+            {
+                "fix": "git config --bool core.bare true; git push",
+                "eq": "git push",
+                "err": "unable to push changes remote branch"
+            },
+            {
+                "fix": "git config --bool core.bare true; git push",
+                "eq": "git push",
+                "err": "unable to push changes remote branch"
+            },
+            {
+                "fix": "git config --bool core.bare true; git push",
+                "eq": "git push",
+                "err": "unable to push changes remote branch"
+            }
+        ]
+    },
+    {
+        "id": 56,
+        "examples": [
+            {
+                "fix": "git clone <remote> ; git checkout mybranche1",
+                "eq": "git pull https://loris:mypass@github.com/Test/test.git; git checkout 'mybranche1'",
+                "err": "error: pathspec 'mybranche1' did not match any file(s) known to git."
+            },
+            {
+                "fix": "git clone <remote> ; git checkout prog",
+                "eq": "git pull https://marc:mypass@github.com/Test/test.git; git checkout 'prog'",
+                "err": "error: pathspec 'prog' did not match any file(s) known to git."
+            },
+            {
+                "fix": "git clone <remote> ; git checkout xyz",
+                "eq": "git pull https://dan:mypass@github.com/Test/test.git; git checkout 'xyz'",
+                "err": "error: pathspec 'xyz' did not match any file(s) known to git."
+            }
+        ]
+    },
+    {
+        "id": 57,
+        "examples": [
+            {
+                "fix": "git checkout HEAD $blahblah",
+                "eq": "git checkout $blahblah",
+                "err": "fatal: git checkout: updating paths is incompatible with switching branches/forcing"
+            },
+            {
+                "fix": "git checkout HEAD $abcd",
+                "eq": "git checkout $abcd",
+                "err": "fatal: git checkout: updating paths is incompatible with switching branches/forcing"
+            },
+            {
+                "fix": "git checkout HEAD $xyz",
+                "eq": "git checkout $xyz",
+                "err": "fatal: git checkout: updating paths is incompatible with switching branches/forcing"
+            }
+        ]
+    },
+    {
+        "id": 58,
+        "examples": [
+            {
+                "fix": "git gc --prune=now",
+                "eq": "git pull origin master",
+                "err": "error: Couldn't set ORIG_HEAD. fatal: Cannot update the ref 'ORIG_HEAD'."
+            },
+            {
+                "fix": "git gc --prune=now",
+                "eq": "git pull origin master",
+                "err": "error: Couldn't set ORIG_HEAD. fatal: Cannot update the ref 'ORIG_HEAD'."
+            },
+            {
+                "fix": "git gc --prune=now",
+                "eq": "git pull origin master",
+                "err": "error: Couldn't set ORIG_HEAD. fatal: Cannot update the ref 'ORIG_HEAD'."
+            }
+        ]
+    },
+    {
+        "id": 59,
+        "examples": [
+            {
+                "fix": "git rm --cached user.v1234.suo",
+                "eq": "git pull origin master",
+                "err": "Your local changes to the following files would be overwritten by merge: user.v1234.suo"
+            },
+            {
+                "fix": "git rm --cached user.abcd.suo",
+                "eq": "git pull origin master",
+                "err": "Your local changes to the following files would be overwritten by merge: user.abcd.suo"
+            },
+            {
+                "fix": "git rm --cached user.xyz.suo",
+                "eq": "git pull origin master",
+                "err": "Your local changes to the following files would be overwritten by merge: user.xyz.suo"
+            }
+        ]
+    },
+    {
+        "id": 60,
+        "examples": [
+            {
+                "fix": "git config repack.usedeltabaseoffset falsegit repack -a -d",
+                "eq": "git status",
+                "err": "error: index file .git/objects/pack/pack-1 4.idx is too small"
+            },
+            {
+                "fix": "git config repack.usedeltabaseoffset falsegit repack -a -d",
+                "eq": "git status",
+                "err": "error: index file .git/objects/pack/pack-2 123.idx is too small"
+            },
+            {
+                "fix": "git config repack.usedeltabaseoffset falsegit repack -a -d",
+                "eq": "git status",
+                "err": "error: index file .git/objects/pack/pack-3 21.idx is too small"
+            }
+        ]
+    },
+    {
+        "id": 61,
+        "examples": [
+            {
+                "fix": "git config http.postBuffer 524288000; git push",
+                "eq": "git push",
+                "err": "error: RPC failed; result=22, HTTP code = 411"
+            },
+            {
+                "fix": "git config http.postBuffer 524288000; git push",
+                "eq": "git push",
+                "err": "error: RPC failed; result=22, HTTP code = 411"
+            },
+            {
+                "fix": "git config http.postBuffer 524288000; git push",
+                "eq": "git push",
+                "err": "error: RPC failed; result=22, HTTP code = 411"
+            }
+        ]
+    },
+    {
+        "id": 62,
+        "examples": [
+            {
+                "fix": "mvn clean package",
+                "eq": "mvn",
+                "err": "No goals have been specified for this build"
+            },
+            {
+                "fix": "mvn clean package",
+                "eq": "mvn",
+                "err": "No goals have been specified for this build"
+            },
+            {
+                "fix": "mvn clean package",
+                "eq": "mvn",
+                "err": "No goals have been specified for this build"
+            }
+        ]
+    },
+    {
+        "id": 63,
+        "examples": [
+            {
+                "fix": "mvn clean build",
+                "eq": "mvn",
+                "err": "No goals have been specified for this build"
+            },
+            {
+                "fix": "mvn clean build",
+                "eq": "mvn",
+                "err": "No goals have been specified for this build"
+            },
+            {
+                "fix": "mvn clean build",
+                "eq": "mvn",
+                "err": "No goals have been specified for this build"
+            }
+        ]
+    },
+    {
+        "id": 64,
+        "examples": [
+            {
+                "fix": "mvn test",
+                "eq": "mvn",
+                "err": "No goals have been specified for this build"
+            },
+            {
+                "fix": "mvn test",
+                "eq": "mvn",
+                "err": "No goals have been specified for this build"
+            },
+            {
+                "fix": "mvn test",
+                "eq": "mvn",
+                "err": "No goals have been specified for this build"
+            }
+        ]
+    },
+    {
+        "id": 65,
+        "examples": [
+            {
+                "fix": "mvn install",
+                "eq": "mvn",
+                "err": "No goals have been specified for this build"
+            },
+            {
+                "fix": "mvn install",
+                "eq": "mvn",
+                "err": "No goals have been specified for this build"
+            },
+            {
+                "fix": "mvn install",
+                "eq": "mvn",
+                "err": "No goals have been specified for this build"
+            }
+        ]
+    },
+    {
+        "id": 66,
+        "examples": [
+            {
+                "fix": "opam init; opam update bla",
+                "eq": "opam update bla",
+                "err": "[ERROR] No OPAM root found at /Users/michael/.opam. Please run 'opam init' to initialize the state of OPAM, or specify '--root'. See 'opam init --help' for details."
+            },
+            {
+                "fix": "opam init; opam update abc",
+                "eq": "opam update abc",
+                "err": "[ERROR] No OPAM root found at /Users/michael/.opam. Please run 'opam init' to initialize the state of OPAM, or specify '--root'. See 'opam init --help' for details."
+            },
+            {
+                "fix": "opam init; opam update xyz",
+                "eq": "opam update xyz",
+                "err": "[ERROR] No OPAM root found at /Users/michael/.opam. Please run 'opam init' to initialize the state of OPAM, or specify '--root'. See 'opam init --help' for details."
+            }
+        ]
+    },
+    {
+        "id": 67,
+        "examples": [
+            {
+                "fix": "svn cleanup",
+                "eq": "svn commit bla1bla",
+                "err": "Path pathname is already locked by user 'admin' in filesystem"
+            },
+            {
+                "fix": "svn cleanup",
+                "eq": "svn commit abcd",
+                "err": "Path pathname is already locked by user 'admin' in filesystem"
+            },
+            {
+                "fix": "svn cleanup",
+                "eq": "svn commit xyz",
+                "err": "Path pathname is already locked by user 'admin' in filesystem"
+            }
+        ]
+    },
+    {
+        "id": 68,
+        "examples": [
+            {
+                "fix": "svn update",
+                "eq": "svn commit blabla",
+                "err": "item b1 is out of date"
+            },
+            {
+                "fix": "svn update",
+                "eq": "svn commit abcd",
+                "err": "item ab3 is out of date"
+            },
+            {
+                "fix": "svn update",
+                "eq": "svn commit xyz",
+                "err": "item db12 is out of date"
+            }
+        ]
+    },
+    {
+        "id": 69,
+        "examples": [
+            {
+                "fix": "svn update -r 6253",
+                "eq": "svn revert 6253",
+                "err": "Skipped '6253'"
+            },
+            {
+                "fix": "svn update -r 534",
+                "eq": "svn revert 534",
+                "err": "Skipped '534'"
+            },
+            {
+                "fix": "svn update -r 41",
+                "eq": "svn revert 41",
+                "err": "Skipped '41'"
+            }
+        ]
+    },
+    {
+        "id": 70,
+        "examples": [
+            {
+                "fix": "svn upgrade",
+                "eq": "svn update",
+                "err": "Error updating changes: svn: E155021: The client is too old to work with the working copy at 'bcdef' (format 31)."
+            },
+            {
+                "fix": "svn upgrade",
+                "eq": "svn update",
+                "err": "Error updating changes: svn: E155021: The client is too old to work with the working copy at 'abcd' (format 31)."
+            },
+            {
+                "fix": "svn upgrade",
+                "eq": "svn update",
+                "err": "Error updating changes: svn: E155021: The client is too old to work with the working copy at 'xyz' (format 31)."
+            }
+        ]
+    },
+    {
+        "id": 71,
+        "examples": [
+            {
+                "fix": "mkdir -p /a/b/bin",
+                "eq": "sudo mkdir /a/b/bin",
+                "err": "mkdir: /a/b: No such file or directory mkdir: /a/b/bin: Operation not permitted"
+            },
+            {
+                "fix": "mkdir -p /w/x/y/dir",
+                "eq": "sudo mkdir /w/x/y/dir",
+                "err": "mkdir: /w/x/y: No such file or directory mkdir: /w/x/y/dir: Operation not permitted"
+            },
+            {
+                "fix": "mkdir -p /usr/rish/local/bin22",
+                "eq": "sudo mkdir /usr/rish/local/bin22",
+                "err": "mkdir: /usr/rish/local: No such file or directory mkdir: /usr/rish/local/bin22: Operation not permitted"
+            }
+        ]
+    },
+    {
+        "id": 72,
+        "examples": [
+            {
+                "fix": "sudo chown joannak: ~/.config/configstore/insight-bower.json",
+                "eq": "sudo chown joannak:joannak ~/.config/configstore/insight-bower.json ",
+                "err": "chown: joannak: illegal group name. "
+            },
+            {
+                "fix": "sudo chown lorisdan: ~/.config/configstore/insight12.json",
+                "eq": "sudo chown lorisdan:lorisdan ~/.config/configstore/insight12.json ",
+                "err": "chown: lorisdan: illegal group name. "
+            },
+            {
+                "fix": "sudo chown rish: ~/.config/configstore/insight1.json",
+                "eq": "sudo chown rish:rish ~/.config/configstore/insight1.json ",
+                "err": "chown: rish: illegal group name. "
+            }
+        ]
+    },
+    {
+        "id": 73,
+        "examples": [
+            {
+                "fix": "composer blabla1",
+                "eq": "composer asdf",
+                "err": "did you mean one of these? blabla1 blayadda2"
+            },
+            {
+                "fix": "composer test",
+                "eq": "composer 1gamma",
+                "err": "did you mean one of these? test game"
+            },
+            {
+                "fix": "composer xyz",
+                "eq": "composer 23xrayy",
+                "err": "did you mean one of these? xyz zyx"
+            }
+        ]
+    },
+    {
+        "id": 74,
+        "examples": [
+            {
+                "fix": "./manage.py migrate --merge myapp1",
+                "eq": "./manage.py migrate myapp1",
+                "err": "--merge: will just attempt the migration"
+            },
+            {
+                "fix": "./manage.py migrate --merge emailprog",
+                "eq": "./manage.py migrate emailprog",
+                "err": "--merge: will just attempt the migration"
+            },
+            {
+                "fix": "./manage.py migrate --merge voice",
+                "eq": "./manage.py migrate voice",
+                "err": "--merge: will just attempt the migration"
+            }
+        ]
+    },
+    {
+        "id": 75,
+        "examples": [
+            {
+                "fix": "whois wikipedia.org",
+                "eq": "whois en.wikipedia.org",
+                "err": ""
+            },
+            {
+                "fix": "whois msn.net",
+                "eq": "whois en.msn.net",
+                "err": ""
+            },
+            {
+                "fix": "whois google.com",
+                "eq": "whois en.google.com",
+                "err": ""
+            }
+        ]
+    },
+    {
+        "id": 76,
+        "examples": [
+            {
+                "fix": "whois wikipedia.org",
+                "eq": "whois https://en.wikipedia.org",
+                "err": ""
+            },
+            {
+                "fix": "whois msn.net",
+                "eq": "whois https://en.msn.net",
+                "err": ""
+            },
+            {
+                "fix": "whois google.com",
+                "eq": "whois https://en.google.com",
+                "err": ""
+            }
+        ]
+    },
+    {
+        "id": 77,
+        "examples": [
+            {
+                "fix": "mkdir file; untar file.tar -C file/",
+                "eq": "untar file.tar",
+                "err": ""
+            },
+            {
+                "fix": "mkdir test1; untar test1.tar -C test1/",
+                "eq": "untar test1.tar",
+                "err": ""
+            },
+            {
+                "fix": "mkdir xyz; untar xyz.tar -C xyz/",
+                "eq": "untar xyz.tar",
+                "err": ""
+            }
+        ]
+    },
+    {
+        "id": 78,
+        "examples": [
+            {
+                "fix": "mkdir file; unzip file.zip -c file/",
+                "eq": "unzip file.zip",
+                "err": ""
+            },
+            {
+                "fix": "mkdir test1; unzip test1.zip -c test1/",
+                "eq": "unzip test1.zip",
+                "err": ""
+            },
+            {
+                "fix": "mkdir xyz; unzip xyz.zip -c xyz/",
+                "eq": "unzip xyz.zip",
+                "err": ""
+            }
+        ]
+    },
+    {
+        "id": 79,
+        "examples": [
+            {
+                "fix": "git branch --set-upstream-to origin/my_branch",
+                "eq": "git pull",
+                "err": "You asked me to pull without telling me which branch you want to merge with, and 'branch.my_branch.merge' in your configuration file does not tell me, either. Please specify which branch you want to use on the command line and try again (e.g. 'git pull <repository> <refspec>'). See git-pull(1) for details. If you often merge with the same branch, you may want to use something like the following in your configuration file:     [ branch 'my_branch' ]    remote = <nickname>    merge = <remote-ref>    [ remote '<nickname>' ]    url = <url>    fetch = <refspec> See git-config(1) for details."
+            },
+            {
+                "fix": "git branch --set-upstream-to origin/feature",
+                "eq": "git pull",
+                "err": "You asked me to pull without telling me which branch you want to merge with, and 'branch.feature.merge' in your configuration file does not tell me, either. Please specify which branch you want to use on the command line and try again (e.g. 'git pull <repository> <refspec>'). See git-pull(1) for details. If you often merge with the same branch, you may want to use something like the following in your configuration file:     [ branch 'feature' ]    remote = <nickname>    merge = <remote-ref>    [ remote '<nickname>' ]    url = <url>    fetch = <refspec> See git-config(1) for details."
+            },
+            {
+                "fix": "git branch --set-upstream-to origin/bugs",
+                "eq": "git pull",
+                "err": "You asked me to pull without telling me which branch you want to merge with, and 'branch.bugs.merge' in your configuration file does not tell me, either. Please specify which branch you want to use on the command line and try again (e.g. 'git pull <repository> <refspec>'). See git-pull(1) for details. If you often merge with the same branch, you may want to use something like the following in your configuration file:     [ branch 'bugs' ]    remote = <nickname>    merge = <remote-ref>    [ remote '<nickname>' ]    url = <url>    fetch = <refspec> See git-config(1) for details."
+            }
+        ]
+    },
+    {
+        "id": 80,
+        "examples": [
+            {
+                "fix": "git branch -u origin/my_branch",
+                "eq": "git pull",
+                "err": "You asked me to pull without telling me which branch you want to merge with, and 'branch.my_branch.merge' in your configuration file does not tell me, either. Please specify which branch you want to use on the command line and try again (e.g. 'git pull <repository> <refspec>'). See git-pull(1) for details. If you often merge with the same branch, you may want to use something like the following in your configuration file:     [ branch 'my_branch' ]    remote = <nickname>    merge = <remote-ref>    [ remote '<nickname>' ]    url = <url>    fetch = <refspec> See git-config(1) for details."
+            },
+            {
+                "fix": "git branch -u origin/feature",
+                "eq": "git pull",
+                "err": "You asked me to pull without telling me which branch you want to merge with, and 'branch.feature.merge' in your configuration file does not tell me, either. Please specify which branch you want to use on the command line and try again (e.g. 'git pull <repository> <refspec>'). See git-pull(1) for details. If you often merge with the same branch, you may want to use something like the following in your configuration file:     [ branch 'feature' ]    remote = <nickname>    merge = <remote-ref>    [ remote '<nickname>' ]    url = <url>    fetch = <refspec> See git-config(1) for details."
+            },
+            {
+                "fix": "git branch -u origin/bugs",
+                "eq": "git pull",
+                "err": "You asked me to pull without telling me which branch you want to merge with, and 'branch.bugs.merge' in your configuration file does not tell me, either. Please specify which branch you want to use on the command line and try again (e.g. 'git pull <repository> <refspec>'). See git-pull(1) for details. If you often merge with the same branch, you may want to use something like the following in your configuration file:     [ branch 'bugs' ]    remote = <nickname>    merge = <remote-ref>    [ remote '<nickname>' ]    url = <url>    fetch = <refspec> See git-config(1) for details."
+            }
+        ]
+    },
+    {
+        "id": 81,
+        "examples": [
+            {
+                "fix": "Javac Foo.java",
+                "eq": "Javac Foo",
+                "err": "error: Class names, 'Foo', are only accepted if annotation processing is explicitly requested"
+            },
+            {
+                "fix": "Javac Blah.java",
+                "eq": "Javac Blah",
+                "err": "error: Class names, 'Blah', are only accepted if annotation processing is explicitly requested"
+            },
+            {
+                "fix": "Javac Etc123456.java",
+                "eq": "Javac Etc123456",
+                "err": "error: Class names, 'Etc123456', are only accepted if annotation processing is explicitly requested"
+            },
+            {
+                "fix": "javac Foo.java Bar.java",
+                "eq": "javac Foo Bar",
+                "err": "error: Class names, 'Foo,Bar', are only accepted if annotation processing is explicitly requested"
+            },
+            {
+                "fix": "javac Foo123.java Bar123.java",
+                "eq": "javac Foo123 Bar123",
+                "err": "error: Class names, 'Foo123,Bar123', are only accepted if annotation processing is explicitly requested"
+            },
+            {
+                "fix": "javac AFileForStuffOkay.java AnotherFileForStuff.java",
+                "eq": "javac AFileForStuffOkay AnotherFileForStuff",
+                "err": "error: Class names, 'AFileForStuffOkay,AnotherFileForStuff', are only accepted if annotation processing is explicitly requested"
+            },
+            {
+                "fix": "javac Foo.java Bar.java Yadda.java",
+                "eq": "javac Foo Bar Yadda",
+                "err": "error: Class names, 'Foo,Bar,Yadda', are only accepted if annotation processing is explicitly requested"
+            },
+            {
+                "fix": "javac FileOne11.java FileTwo22.java FileThree33.java",
+                "eq": "javac FileOne11 FileTwo22 FileThree33",
+                "err": "error: Class names, 'FileOne11,FileTwo22,FileThree33', are only accepted if annotation processing is explicitly requested"
+            },
+            {
+                "fix": "javac ClassFile1One11.java AnotherClassFile2Two22.java ThirdClassFile3Three33.java",
+                "eq": "javac ClassFile1One11 AnotherClassFile2Two22 ThirdClassFile3Three33",
+                "err": "error: Class names, 'ClassFile1One11,AnotherClassFile2Two22,ThirdClassFile3Three33', are only accepted if annotation processing is explicitly requested"
+            }
+        ]
+    }
+]
