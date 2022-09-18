@@ -13,8 +13,8 @@
     <ProjectReference Include="..\StringLang.Semantics\StringLang.Semantics.csproj" />
     <ProjectReference Include="..\StringLang\StringLang.csproj" />
     
-    <PackageReference Include="Microsoft.ProgramSynthesis" Version="6.5.0" />
-    <PackageReference Include="Microsoft.ProgramSynthesis.Compiler" Version="6.5.0" />
+    <PackageReference Include="Microsoft.ProgramSynthesis" Version="8.12.0" />
+    <PackageReference Include="Microsoft.ProgramSynthesis.Compiler" Version="8.12.0" />
   </ItemGroup>
 
 </Project>

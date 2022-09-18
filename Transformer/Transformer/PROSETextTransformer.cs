@@ -2,7 +2,7 @@
 using System.Linq;
 using Microsoft.ProgramSynthesis.AST;
 using Microsoft.ProgramSynthesis.Transformation.Text;
-using Microsoft.ProgramSynthesis.Transformation.Text.Semantics;
+using Microsoft.ProgramSynthesis.Wrangling;
 
 namespace EqFix.Lib.Transformer
 {
