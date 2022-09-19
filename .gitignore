@@ -192,3 +192,6 @@ Gemfile.lock
 __pycache__/
 *.py[cod]
 *$py.class
+
+# .NET version
+global.json

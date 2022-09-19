@@ -97,46 +97,6 @@ let onlineTest (file: string) testRunner =
         (i, List.map (fun x -> match x with Some k -> k | _ -> -1) rs)
     ] |> List.iter (fun (i, rs) -> printfn "#%d: %A" i rs)
 
-let demo1 () =
-    let eq1 = "+ alpha"
-    let err1 = "alpha is a letter, + shall be -"
-    let fix1 = "- \\alpha"
-    let example1 = (eq1, err1, fix1)
-
-    let eq2 = "- beta"
-    let err2 = "beta is a letter, - shall be +"
-    let fix2 = "+ \\beta"
-    let example2 = (eq2, err2, fix2)
-    let examples = [example1; example2]
-
-    let config = { maxK = 1; solver = SolverName.STLang }
-
-    match synthesizeRule config examples with
-    | Some rule -> printfn "%A" rule
-    | None -> printfn "Fail to synthesize rule."
-
-    synthesizeRulesAndTest config ([example1], [example2]) |> printfn "%A"
-
-let demo2 () =
-    let eq1 = "alpha + beta + gamma"
-    let err1 = "alpha , beta and gamma are letters"
-    let fix1 = "\\alpha - \\beta - \\gamma"
-    let example1 = (eq1, err1, fix1)
-
-    let eq2 = "gamma * zeta * varphi"
-    let err2 = "gamma , zeta and varphi are letters"
-    let fix2 = "\\gamma - \\zeta - \\varphi"
-    let example2 = (eq2, err2, fix2)
-    let examples = [example1; example2]
-
-    let config = { maxK = 1; solver = SolverName.STLang }
-
-    match synthesizeRule config examples with
-    | Some rule -> printfn "%A" rule
-    | None -> printfn "Fail to synthesize rule."
-
-    synthesizeRulesAndTest config ([example1], [example2]) |> printfn "%A"
-
 // options
 type SolverOptions =
     | [<MainCommand; Mandatory>] Benchmarks of file: string
@@ -170,7 +130,6 @@ with interface IArgParserTemplate with
 and CLIOptions =
     | [<AltCommandLine("-log")>] Log_Level of Logger.LogLevel
     | [<AltCommandLine("-p")>] Plain_Log
-    | [<CliPrefix(CliPrefix.None)>] Demo
     | [<CliPrefix(CliPrefix.None)>] Eval of ParseResults<SolverOptions>
     | [<CliPrefix(CliPrefix.None)>] Naive of ParseResults<SolverOptions>
     | [<CliPrefix(CliPrefix.None)>] NaiveT of ParseResults<SolverOptions>
@@ -179,7 +138,6 @@ with interface IArgParserTemplate with
         member s.Usage = match s with
                          | Log_Level _ -> "specify the log level, default info."
                          | Plain_Log _ -> "enable plain log mode (default colorful log)."
-                         | Demo -> "running demos."
                          | Eval _ -> "evaluation mode."
                          | Naive _ -> "naive evaluation mode."
                          | NaiveT _ -> "naive evaluation mode with tokenizing err message."
@@ -232,9 +190,8 @@ let main argv =
     Log.DisplayLevel <- results.GetResult (Log_Level, defaultValue = Logger.LogLevel.INFO)
 
     // modes
-    let (|ModeDemo|ModeEval|ModeNaive|ModeNaiveT|ModeOL|ModeNone|) (r: ParseResults<CLIOptions>) = 
-        if r.Contains Demo then ModeDemo
-        else if r.Contains Eval then ModeEval
+    let (|ModeEval|ModeNaive|ModeNaiveT|ModeOL|ModeNone|) (r: ParseResults<CLIOptions>) = 
+        if r.Contains Eval then ModeEval
         else if r.Contains Naive then ModeNaive
         else if r.Contains NaiveT then ModeNaiveT
         else if r.Contains Online then ModeOL
@@ -242,9 +199,6 @@ let main argv =
 
     // do different things based on different mode
     match results with
-    | ModeDemo ->
-        demo1 ()
-        demo2 ()
     | ModeEval ->
         runBenchmarks (results.GetResult Eval) runBenchmarksEqFix
     | ModeNaive ->
@@ -274,7 +228,7 @@ let main argv =
                         | Dump _ -> 5)
         |> List.iter handler
     | ModeNone ->
-        printfn "ERROR: missing running mode (demo|eval|naive)."
+        printfn "ERROR: missing running mode (eval|naive)."
         parser.PrintUsage() |> printfn "%s"
     
     0 // return an integer exit code
