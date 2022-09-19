@@ -8,7 +8,7 @@ jobs:
     runs-on: ubuntu-latest
     strategy:
       matrix:
-        dotnet-version: ['2.0', '2.2.x']
+        dotnet-version: ['2.1.x', '2.2.x']
 
     steps:
       - uses: actions/checkout@v3
