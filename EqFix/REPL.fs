@@ -35,26 +35,15 @@ with interface IArgParserTemplate with
             | Test_Only _ -> "specify a list of example groups (by ids) expected to run"
             | Test_Index _ -> "for each group, take the i-th example from last for testing, default 1"
 
-type LoadSaveOptions =
-    | [<MainCommand; Mandatory>] LibFile of file: string
-with interface IArgParserTemplate with
-        member s.Usage =
-            match s with
-            | LibFile _ -> "rule lib file"
-
 type REPLOptions =
     | [<CliPrefix(CliPrefix.None)>] Train of ParseResults<TrainOptions>
     | [<CliPrefix(CliPrefix.None)>] Test of ParseResults<TestOptions>
-    | [<CliPrefix(CliPrefix.None)>] Load of ParseResults<LoadSaveOptions>
-    | [<CliPrefix(CliPrefix.None)>] Save of ParseResults<LoadSaveOptions>
     | [<AltCommandLine("q")>] Quit
 with interface IArgParserTemplate with
         member s.Usage =
             match s with
             | Train _ -> "learn new rules by examples"
             | Test _ -> "test examples"
-            | Load _ -> "load rules from a rule lib"
-            | Save _ -> "save rules to a rule lib"
             | Quit -> "quit"
 
 let loadExampleGroups (file: string) (idFilter: int -> bool) =
@@ -113,8 +102,6 @@ let repl (it: Iterator<string>) =
         function
         | Train r -> train r ruleLib.Learn
         | Test r -> test r ruleLib.Test
-        | Load r -> r.GetResult LibFile |> ruleLib.Load
-        | Save r -> r.GetResult LibFile |> ruleLib.Dump
         | Quit -> continues <- false
 
     let safeHandler r = // catch all exceptions
