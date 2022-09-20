@@ -86,14 +86,14 @@ type RuleLib () =
         let bytes = File.ReadAllBytes(file)
         let rules = xmlSerializer.UnPickle<List<RuleVSA>> bytes
         rules.AddRange(rules)
-        Log.Success("RuleLib: {0} rules loaded from file {1}, totally {2}.", 
+        Log.Success("RuleLib: {0} rules loaded from file {1}, total {2}.", 
             rules.Count, file, rules.Count)
 
     member this.Learn (config: SolverConfig) (examples: Example list) = 
         match synthesizeRules config examples with
         | Some r -> 
             rules.Add(r)
-            Log.Success("RuleLib: rule synthesized, totally {0}.", rules.Count)
+            Log.Success("RuleLib: rule synthesized, total {0}.", rules.Count)
         | None -> Log.Failure("RuleLib: fail to synthesize rule.")
 
     member this.Test (test: Example): int option = findAndReturn (fun r -> tryTest1 r test) rules

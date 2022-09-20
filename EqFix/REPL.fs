@@ -126,7 +126,9 @@ let repl (it: Iterator<string>) =
         | :? IOException as ex ->
             Console.Error.WriteLine("ERROR: " + ex.Message)
             Console.Error.WriteLine("Note: please use absolute path for files")
-        | ex -> Console.Error.WriteLine("Internal ERROR: " + ex.Message)
+        | ex ->
+            Console.Error.WriteLine("Internal ERROR: " + ex.Message)
+            Console.Error.WriteLine(ex.StackTrace)
 
     // loop
     while continues && it.HasCurrent do
