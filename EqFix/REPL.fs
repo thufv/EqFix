@@ -7,6 +7,7 @@ open EqFix.RuleLib
 open FSharp.Data
 open Argu
 open System
+open System.IO
 
 type TrainOptions =
     | [<MainCommand; Mandatory>] TrainFile of file: string
@@ -103,12 +104,31 @@ let repl (it: Iterator<string>) =
     let parser: ArgumentParser<REPLOptions> = ArgumentParser.Create(programName = ">", errorHandler = errorHandler)
     printfn "EqFix interactive REPL"
 
-    // set up rule lib
+    // set up rule lib and env
     let ruleLib = RuleLib ()
-
-    // loop
     let mutable continues = true
     let emptyResult = parser.ParseCommandLine [| |]
+
+    let handler =
+        function
+        | Train r -> train r ruleLib.Learn
+        | Test r -> test r ruleLib.Test
+        | Load r -> r.GetResult LibFile |> ruleLib.Load
+        | Save r -> r.GetResult LibFile |> ruleLib.Dump
+        | Quit -> continues <- false
+
+    let safeHandler r = // catch all exceptions
+        try handler r with
+        | :? ArguParseException as ex ->
+            let writer = if ex.ErrorCode = ErrorCode.HelpText then Console.Out else Console.Error
+            writer.WriteLine ex.Message
+            writer.Flush()
+        | :? IOException as ex ->
+            Console.Error.WriteLine("ERROR: " + ex.Message)
+            Console.Error.WriteLine("Note: please use absolute path for files")
+        | ex -> Console.Error.WriteLine("Internal ERROR: " + ex.Message)
+
+    // loop
     while continues && it.HasCurrent do
         printf "> "
         let input = it.GetCurrent
@@ -116,18 +136,9 @@ let repl (it: Iterator<string>) =
         let results =
             try parser.ParseCommandLine (input.Split ' ') with
             | :? ArguParseException as ex ->
-                // NOTE: mandatory arg causes uncaught exception
                 let writer = if ex.ErrorCode = ErrorCode.HelpText then Console.Out else Console.Error
                 writer.WriteLine ex.Message
                 writer.Flush()
                 emptyResult
 
-        let handler =
-            function
-            | Train r -> train r ruleLib.Learn
-            | Test r -> test r ruleLib.Test
-            | Load r -> r.GetResult LibFile |> ruleLib.Load
-            | Save r -> r.GetResult LibFile |> ruleLib.Dump
-            | Quit -> continues <- false
-
-        results.GetAllResults() |> List.iter handler
+        results.GetAllResults() |> List.iter safeHandler
