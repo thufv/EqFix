@@ -35,15 +35,24 @@ with interface IArgParserTemplate with
             | Test_Only _ -> "specify a list of example groups (by ids) expected to run"
             | Test_Index _ -> "for each group, take the i-th example from last for testing, default 1"
 
+type FixOptions =
+    | [<AltCommandLine("-k")>] Rank of k: int
+with interface IArgParserTemplate with
+        member s.Usage =
+            match s with
+            | Rank _ -> "show up to k top ranked fixes, default 3"
+
 type REPLOptions =
     | [<CliPrefix(CliPrefix.None)>] Train of ParseResults<TrainOptions>
     | [<CliPrefix(CliPrefix.None)>] Test of ParseResults<TestOptions>
+    | [<CliPrefix(CliPrefix.None)>] Fix of ParseResults<FixOptions>
     | [<AltCommandLine("q")>] Quit
 with interface IArgParserTemplate with
         member s.Usage =
             match s with
             | Train _ -> "learn new rules by examples"
             | Test _ -> "test examples"
+            | Fix _ -> "fix an erroneous equation"
             | Quit -> "quit"
 
 let loadExampleGroups (file: string) (idFilter: int -> bool) =
@@ -88,6 +97,20 @@ let test (r: ParseResults<TestOptions>) tester =
         | None -> Log.Info("Failure: no rule applicable")
     ] |> ignore
 
+let fix (r: ParseResults<FixOptions>) fixer =
+    let get (prompt: string) =
+        Console.Write(prompt)
+        Console.ReadLine()
+
+    let eq = get "erroneous equation: "
+    let err = get "error message: "
+
+    let k = r.GetResult (Rank, defaultValue = 3)
+    match fixer (eq, err) with
+    | Some seq ->
+        seq |> Seq.take k |> Seq.indexed |> Seq.iter (fun (i, f) -> printfn "Candidate #%i: %s" i f)
+    | None -> Console.WriteLine("Failure: no rule applicable")
+
 let repl (it: Iterator<string>) =
     let errorHandler = ExceptionExiter()
     let parser: ArgumentParser<REPLOptions> = ArgumentParser.Create(programName = ">", errorHandler = errorHandler)
@@ -102,6 +125,7 @@ let repl (it: Iterator<string>) =
         function
         | Train r -> train r ruleLib.Learn
         | Test r -> test r ruleLib.Test
+        | Fix r -> fix r ruleLib.Apply
         | Quit -> continues <- false
 
     let safeHandler r = // catch all exceptions

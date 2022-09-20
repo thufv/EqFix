@@ -45,22 +45,20 @@ let main argv =
     let exe = "EqFix.exe"
     let errorHandler = ProcessExiter()
     let parser = ArgumentParser.Create<CLIOptions>(programName = exe, errorHandler = errorHandler)
+    let results = parser.ParseCommandLine argv
 
-    if argv.Length = 0 then
-        StdInIterator () |> REPL.repl
+    // setup loggers
+    Log.ShowColor <- not (results.Contains Plain_Log)
+    Log.DisplayLevel <- results.GetResult (Log_Level, defaultValue = Logger.LogLevel.INFO)
+
+    if results.Contains Bench then
+        results.GetResult Bench |> bench
+    else if results.Contains Batch then
+        (results.GetResult Batch).GetResult CommandFile
+        |> File.ReadAllLines
+        |> List.ofArray |> StringListIterator
+        |> REPL.repl
     else
-        let results = parser.ParseCommandLine argv
-
-        // setup loggers
-        Log.ShowColor <- not (results.Contains Plain_Log)
-        Log.DisplayLevel <- results.GetResult (Log_Level, defaultValue = Logger.LogLevel.INFO)
-
-        if results.Contains Bench then
-            results.GetResult Bench |> bench
-        else if results.Contains Batch then
-            (results.GetResult Batch).GetResult CommandFile
-            |> File.ReadAllLines
-            |> List.ofArray |> StringListIterator
-            |> REPL.repl
+        StdInIterator () |> REPL.repl
 
     0 // return an integer exit code
