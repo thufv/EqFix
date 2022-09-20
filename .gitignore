@@ -195,3 +195,6 @@ __pycache__/
 
 # .NET version
 global.json
+
+# Others
+Scripts/Command.txt

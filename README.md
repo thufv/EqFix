@@ -13,13 +13,18 @@ Optional:
 A text editor like VS Code (https://code.visualstudio.com/Download) 
 is preferred to read and edit F# codes.
 
-## Set Up
+## Build
 
-Change to the subdirectory `Eqfix/`.
+In the project root directory:
 
-1. Build with `dotnet build`.
+```sh
+dotnet build --configuration Release EqFix  # Build EqFix
+dotnet test EqFix.Tests                     # Test
+```
 
-2. Run with `dotnet run`.
+## Interactive Mode
+
+Change to the binary directory ``
 
 ## Experiments
 

@@ -6,16 +6,16 @@ from common import *
 # config: 1 | 2 | 3 | 4 (i.e., C1 | C2 | C3 | C4 as defined by the paper)
 def run_EqFix(config: int):
     print(f'--> running EqFix under C{config}')
-    lines = subprocess.run(['dotnet', DLL, '-p', 'eval', BENCHMARK, '-k', '10', '-n', str(config)],
-            check=True, stdout=subprocess.PIPE, cwd='../EqFix/bin/Debug/netcoreapp2.0'
+    lines = subprocess.run(['dotnet', DLL, '-p', 'bench', BENCHMARK, '-k', '10', '-n', str(config)],
+        check=True, stdout=subprocess.PIPE, cwd=DLL_DIR
     ).stdout.decode('utf8').split('\n')
     return parse_log(lines)
 
 # config: 1 | 2 | 3 | 4 (i.e., C1 | C2 | C3 | C4 as defined by the paper)
 def run_FlashFill(config: int):
     print(f'--> running FlashFill under C{config}')
-    lines = subprocess.run(['dotnet', DLL, '-p', 'naive', BENCHMARK, '-k', '10', '-n', str(config), '-s', 'prose'],
-        check=True, stdout=subprocess.PIPE, cwd='../EqFix/bin/Debug/netcoreapp2.0'
+    lines = subprocess.run(['dotnet', DLL, '-p', 'bench', BENCHMARK, '-k', '10', '-n', str(config), '--flashfill'],
+        check=True, stdout=subprocess.PIPE, cwd=DLL_DIR
     ).stdout.decode('utf8').split('\n')
     return parse_log(lines)
 

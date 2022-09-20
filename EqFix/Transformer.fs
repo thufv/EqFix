@@ -1,7 +1,6 @@
 module EqFix.Transformer
 
 open EqFix.Lib.Transformer
-open EqFix.Util
 
 type TExample = string list * string
 

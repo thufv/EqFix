@@ -3,6 +3,7 @@ import re
 from typing import Any, List, Optional, Tuple
 
 DLL = 'EqFix.dll'
+DLL_DIR = '../EqFix/bin/Release/netcoreapp2.0'
 BENCHMARK = os.path.abspath('../Benchmarks/Full.json')
 
 INT_REGEX = re.compile(r'(?P<number>\d+) .+')
