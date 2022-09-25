@@ -1,8 +1,11 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Xml.Linq;
+using System.Runtime.Serialization;
 using Microsoft.ProgramSynthesis;
 using Microsoft.ProgramSynthesis.AST;
+using EqFix.Lib.Transformer.StringLang;
 using EqFix.Lib.Logging;
 
 namespace EqFix.Lib.Transformer
@@ -38,7 +41,8 @@ namespace EqFix.Lib.Transformer
     /// A wrapped type for the internal <code>ProgramNode</code>.
     /// </summary>
     /// <typeparam name="/summary"></typeparam>
-    public sealed class STProgram
+    [Serializable]
+    public sealed class STProgram : ISerializable
     {
         private static Logger Log = Logger.Instance;
 
@@ -89,6 +93,55 @@ namespace EqFix.Lib.Transformer
         {
             return _program.PrintAST(ASTSerializationFormat.HumanReadable);
         }
+
+        /// <summary>
+        /// Serialization
+        /// </summary>
+        public void GetObjectData(SerializationInfo info, StreamingContext context)
+        {
+            XElement xml;
+            try
+            {
+                var serializer = StringTransformer.GetASTSerializer(_t);
+                xml = serializer.PrintXML(_program);
+            }
+            catch (Exception ex)
+            {
+                Console.Error.WriteLine(ex.Message);
+                Console.Error.WriteLine(ex.StackTrace);
+                return;
+            }
+
+            info.AddValue("ast", xml.ToString(SaveOptions.DisableFormatting), typeof(string));
+            info.AddValue("rank", _rank, typeof(int));
+            info.AddValue("dsl", _t, typeof(string));
+        }
+
+        /// <summary>
+        /// The special constructor for deserialization.
+        /// </summary>
+        public STProgram(SerializationInfo info, StreamingContext context)
+        {
+            var xml = (string) info.GetValue("ast", typeof(string));
+            var rank = (int) info.GetValue("rank", typeof(int));
+            var dsl = (string) info.GetValue("dsl", typeof(string));
+
+            _rank = rank;
+            _t = dsl;
+
+            try
+            {
+                var serializer = StringTransformer.GetASTSerializer(_t);
+                _program = serializer.Parse(XElement.Parse(xml));
+            }
+            catch (Exception ex)
+            {
+                Console.Error.WriteLine("Loading: " + xml);
+                Console.Error.WriteLine(ex.Message);
+                Console.Error.WriteLine(ex.StackTrace);
+                Environment.Exit(1);
+            }
+        }
     }
 
     public static class StringTransformer
@@ -96,8 +149,12 @@ namespace EqFix.Lib.Transformer
         public static List<STProgram> Synthesize(string name, IEnumerable<STExample> examples, int k)
         {
             switch (name) {
-                case "PROSE": return PROSETextTransformer.Synthesize(examples, k);
-                case "STLang": return STLangTransformer.Synthesize(examples, k);
+                case "PROSE":
+                    PROSETextTransformer.Init();
+                    return PROSETextTransformer.Synthesize(examples, k);
+                case "STLang":
+                    STLangTransformer.Init();
+                    return STLangTransformer.Synthesize(examples, k);
             }
 
             throw new InvalidOperationException("Unknown st name: " + name);
@@ -106,8 +163,12 @@ namespace EqFix.Lib.Transformer
         public static object TransformInput(string name, STInput input)
         {
             switch (name) {
-                case "PROSE": return PROSETextTransformer.TransformInput(input);
-                case "STLang": return STLangTransformer.TransformInput(input);
+                case "PROSE":
+                    PROSETextTransformer.Init();
+                    return PROSETextTransformer.TransformInput(input);
+                case "STLang":
+                    STLangTransformer.Init();
+                    return STLangTransformer.TransformInput(input);
             }
 
             throw new InvalidOperationException("Unknown st name: " + name);
@@ -116,11 +177,34 @@ namespace EqFix.Lib.Transformer
         public static Symbol GetInputSymbol(string name)
         {
             switch (name) {
-                case "PROSE": return PROSETextTransformer.InputSymbol;
-                case "STLang": return STLangTransformer.InputSymbol;
+                case "PROSE":
+                    PROSETextTransformer.Init();
+                    return PROSETextTransformer.InputSymbol;
+                case "STLang":
+                    STLangTransformer.Init();
+                    return STLangTransformer.InputSymbol;
             }
 
             throw new InvalidOperationException("Unknown st name: " + name);
+        }
+
+        public static Grammar GetGrammar(string name)
+        {
+            switch (name) {
+                case "PROSE":
+                    PROSETextTransformer.Init();
+                    return PROSETextTransformer.DSL;
+                case "STLang":
+                    STLangTransformer.Init();
+                    return STLangTransformer.DSL;
+            }
+
+            throw new InvalidOperationException("Unknown st name: " + name);
+        }
+
+        public static ASTSerializer GetASTSerializer(string name)
+        {
+            return new ASTSerializer(GetGrammar(name));
         }
     }
 }

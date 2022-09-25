@@ -74,7 +74,6 @@ type RuleLib () =
     member this.Empty () = not (rules.Any())
 
     member this.Dump (file: string) =
-        // TODO: Implement Serializer for STProgram
         if this.Empty () then Log.Warning("RuleLib: no rules found, dump ignore.")
         else
             let bytes = xmlSerializer.Pickle rules
@@ -82,10 +81,9 @@ type RuleLib () =
             Log.Success("RuleLib: {0} rules dumped to file {1}.", rules.Count, file)
 
     member this.Load (file: string) =
-        // TODO: Implement Serializer for STProgram
         let bytes = File.ReadAllBytes(file)
-        let rules = xmlSerializer.UnPickle<List<RuleVSA>> bytes
-        rules.AddRange(rules)
+        let loaded = xmlSerializer.UnPickle<List<RuleVSA>> bytes
+        rules.AddRange(loaded)
         Log.Success("RuleLib: {0} rules loaded from file {1}, total {2}.", 
             rules.Count, file, rules.Count)
 

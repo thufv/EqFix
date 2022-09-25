@@ -42,10 +42,19 @@ with interface IArgParserTemplate with
             match s with
             | Rank _ -> "show up to k top ranked fixes, default 3"
 
+type LoadSaveOptions =
+    | [<MainCommand; Mandatory>] LibFile of file: string
+with interface IArgParserTemplate with
+        member s.Usage =
+            match s with
+            | LibFile _ -> "rule lib file"
+
 type REPLOptions =
     | [<CliPrefix(CliPrefix.None)>] Train of ParseResults<TrainOptions>
     | [<CliPrefix(CliPrefix.None)>] Test of ParseResults<TestOptions>
     | [<CliPrefix(CliPrefix.None)>] Fix of ParseResults<FixOptions>
+    | [<CliPrefix(CliPrefix.None)>] Load of ParseResults<LoadSaveOptions>
+    | [<CliPrefix(CliPrefix.None)>] Save of ParseResults<LoadSaveOptions>
     | [<AltCommandLine("q")>] Quit
 with interface IArgParserTemplate with
         member s.Usage =
@@ -53,6 +62,8 @@ with interface IArgParserTemplate with
             | Train _ -> "learn new rules by examples"
             | Test _ -> "test examples"
             | Fix _ -> "fix an erroneous equation"
+            | Load _ -> "load rules from a rule lib"
+            | Save _ -> "save rules to a rule lib"
             | Quit -> "quit"
 
 let loadExampleGroups (file: string) (idFilter: int -> bool) =
@@ -126,6 +137,8 @@ let repl (it: Iterator<string>) =
         | Train r -> train r ruleLib.Learn
         | Test r -> test r ruleLib.Test
         | Fix r -> fix r ruleLib.Apply
+        | Load r -> r.GetResult LibFile |> ruleLib.Load
+        | Save r -> r.GetResult LibFile |> ruleLib.Dump
         | Quit -> continues <- false
 
     let safeHandler r = // catch all exceptions

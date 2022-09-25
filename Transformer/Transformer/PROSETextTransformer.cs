@@ -21,6 +21,8 @@ namespace EqFix.Lib.Transformer
     {
         private static Logger Log = Logger.Instance;
 
+        public static Grammar DSL;
+        
         public static Symbol InputSymbol;
 
         public static void Init()
@@ -32,6 +34,7 @@ namespace EqFix.Lib.Transformer
                 };
                 ProgramNode p = Learner.Instance.Learn(constraints).ProgramNode;
                 Debug.Assert(p != null);
+                DSL = p.Grammar;
                 InputSymbol = p.Grammar.InputSymbol;
             }
 
@@ -51,7 +54,6 @@ namespace EqFix.Lib.Transformer
         /// <returns>The synthesized programs.</returns>
         public static List<STProgram> Synthesize(IEnumerable<STExample> examples, int k = 1)
         {
-            Init();
             Log.Debug("ST examples: {0}",
                       String.Concat(examples.Select(e => "\n" + e.ToString())));
 

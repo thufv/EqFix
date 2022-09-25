@@ -34,29 +34,29 @@ namespace EqFix.Lib.Transformer
 
         private static RankingScore _scorer;
         
-        private static Grammar _grammar;
+        public static Grammar DSL;
 
         public static Symbol InputSymbol;
 
         public static void Init()
         {
-            if (_grammar == null) { // not yet compiled
+            if (DSL == null) { // not yet compiled
                 // compile grammar
-                _grammar = LoadGrammar("StringLang.grammar",
+                DSL = LoadGrammar("StringLang.grammar",
                     CompilerReference.FromAssemblyFiles(typeof(Semantics).GetTypeInfo().Assembly,
                                                         typeof(Record).GetTypeInfo().Assembly));
-                if (_grammar == null) {
-                    Log.Error("ST: Grammar not compiled.");
+                if (DSL == null) {
+                    Log.Error("ST: DSL not compiled.");
                     return;
                 }
                 
-                InputSymbol = _grammar.InputSymbol; // set input symbol
+                InputSymbol = DSL.InputSymbol; // set input symbol
             }
 
             // set up engine
-            var witnessFunctions = new WitnessFunctions(_grammar);
-            _scorer = new RankingScore(_grammar);
-            _engine = new SynthesisEngine(_grammar, new SynthesisEngine.Config
+            var witnessFunctions = new WitnessFunctions(DSL);
+            _scorer = new RankingScore(DSL);
+            _engine = new SynthesisEngine(DSL, new SynthesisEngine.Config
             {
                 Strategies = new ISynthesisStrategy[]
                 {
@@ -81,7 +81,6 @@ namespace EqFix.Lib.Transformer
         /// <returns>The synthesized programs.</returns>
         public static List<STProgram> Synthesize(IEnumerable<STExample> examples, int k = 1)
         {
-            Init();
             Log.Debug("ST examples: {0}",
                       String.Concat(examples.Select(e => "\n" + e.ToString())));
 
@@ -115,7 +114,6 @@ namespace EqFix.Lib.Transformer
 
             // learn
             ProgramSet consistentPrograms = _engine.LearnGrammar(spec);
-            // _engine.Configuration.LogListener.SaveLogToXML("learning.log.xml");
             var programs = consistentPrograms.TopK(_scorer, k).Take(k).ToArray();
             Log.Debug("ST: {0} program(s) synthesized.", programs.Length);
             
