@@ -80,13 +80,13 @@ The argument `<I>` for the option `-i` indicates that the `I`-th example *from l
 
 You use the command `fix` to apply the learned fixing rules on an erroneous equation and error message.
 If any rule is applicable, the fixed equation will be displayed.
-The typical usage is:
+The typical usage is simply:
 
 ```
-> fix <EQUATION> -m <MESSAGE>
+> fix
 ```
 
-Then interactively input your erroneous equation and error message.
+Then input your erroneous equation and error message following the prompts.
 
 ## Replication
 
