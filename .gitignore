@@ -197,5 +197,7 @@ __pycache__/
 global.json
 
 # Others
-Scripts/Command.txt
+Scripts/cmd_*.txt
+Scripts/*.csv
+Scripts/*.eps
 .fake

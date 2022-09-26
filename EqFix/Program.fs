@@ -57,8 +57,8 @@ let main argv =
         (results.GetResult Batch).GetResult CommandFile
         |> File.ReadAllLines
         |> List.ofArray |> StringListIterator
-        |> REPL.repl
+        |> REPL.repl false
     else
-        StdInIterator () |> REPL.repl
+        StdInIterator () |> REPL.repl true
 
     0 // return an integer exit code

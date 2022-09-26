@@ -122,7 +122,7 @@ let fix (r: ParseResults<FixOptions>) fixer =
         seq |> Seq.take k |> Seq.indexed |> Seq.iter (fun (i, f) -> printfn "Candidate #%i: %s" i f)
     | None -> Console.WriteLine("Failure: no rule applicable")
 
-let repl (it: Iterator<string>) =
+let repl (showPrompt: bool) (it: Iterator<string>) =
     let errorHandler = ExceptionExiter()
     let parser: ArgumentParser<REPLOptions> = ArgumentParser.Create(programName = ">", errorHandler = errorHandler)
     printfn "EqFix interactive REPL"
@@ -156,7 +156,7 @@ let repl (it: Iterator<string>) =
 
     // loop
     while continues && it.HasCurrent do
-        printf "> "
+        if showPrompt then printf "> "
         let input = it.GetCurrent
         it.MoveNext()
         let results =

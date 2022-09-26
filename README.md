@@ -1,13 +1,13 @@
 # EqFix
 
-Repairing LaTeX equations.
+Repairing LaTeX equations by examples.
 
 ## System Requirements
 
-Install .Net SDK (https://www.microsoft.com/net/download) for your platform.
+Install .NET SDK (https://www.microsoft.com/net/download) for your platform.
 You must have .NET Core 2.x installed to correctly run [PROSE](https://github.com/microsoft/prose)'s DSL compiler.
 
-Note: you may build this project using a higher version .Net SDK (such as 6.x, the latest); but 2.x must be one of your installed version. Type `dotnet --list-sdks` to check if 2.0.x/2.1.x/2.2.x is on the list.
+Note: you may build this project using a higher version .NET SDK (such as 6.x, the latest); but 2.x must be one of your installed version. Type `dotnet --list-sdks` to check if 2.0.x/2.1.x/2.2.x is on the list.
 
 ## Build
 
@@ -64,9 +64,11 @@ that consists of two fields:
 The argument `<K>` for the option `-k` specifies to synthesize top-`<K>` programs (default 1).
 The argument `<N>` for the option `-n` specifies the number of examples used for synthesis in each example group (default 1).
 
+The learned rules are cached in the in-memory rule library.
+
 ### Testing
 
-You use the command `test` to test the learned fixing rules against some groups of examples.
+You use the command `test` to test the rules (in the in-memory rule library) against some groups of examples.
 The typical usage is:
 
 ```
@@ -78,7 +80,7 @@ The argument `<I>` for the option `-i` indicates that the `I`-th example *from l
 
 ### Fixing
 
-You use the command `fix` to apply the learned fixing rules on an erroneous equation and error message.
+You use the command `fix` to repair an erroneous equation.
 If any rule is applicable, the fixed equation will be displayed.
 The typical usage is simply:
 
@@ -88,6 +90,26 @@ The typical usage is simply:
 
 Then input your erroneous equation and error message following the prompts.
 
+### Saving
+
+You save all the rules cached in the in-memory rule library into a file using the command `save`:
+
+```
+> save <RULE_FILE>
+```
+
+The `<RULE_FILE>` must have the `.xml` file extension.
+
+### Loading
+
+To load rules that were previously saved, use the command `load`:
+
+```
+> load <RULE_FILE>
+```
+
+p.s. Saving/Loading is implemented through object serialization/deserialization. As the PROSE framework is buggy if the DSL contains user-customized types (PROSE doesn't know how to serialize them), we adopt an alternative mechanism realized in [this project](https://github.com/xurongchen/ASTSerialization).
+
 ## Replication
 
-See `Scripts/`.
+See [Replication.md](Replication.md) for the instructions.
