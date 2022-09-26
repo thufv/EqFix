@@ -31,10 +31,10 @@ To replicate the second experiment, execute the `end_to_end.py` script in the cu
 ./end_to_end.py
 ```
 
-This script will test EqFix's rule library and the serialization/deserialization of rule library files (in XML format). Technically, this script invokes EqFix twice (you can see there are two `subprocess.run` calls in the script):
+This script will test EqFix's rule library and the serialization/deserialization of rule library files (in XML format). Technically, this script invokes EqFix twice (you can see there are two calls of `subprocess.run` in the script):
 For the first time, it invokes EqFix to train a set of rules from the training set (configuration C4) and then to save the rules in a rule library file (`1.xml`).
 For the second time, it invokes EqFix to load the rules from this rule library file and then test against the testing set (the last example of each example group).
 Note that the script uses EqFix's CLI subcommand `batch <FILE>` to instruct EqFix to accept user-input commands from `<FILE>` in the interactive mode (so that you don't have to input them manually).
-The commands are using absolute path and we generate temporary `cmd_*.txt` files.
+The commands are using the absolute path and we generate temporary `cmd_*.txt` files.
 The test result -- the number of attempted rules for each test case -- is recorded in the generated file `end_to_end_test.csv`.
 You can see one more test case (#71) is solved as mentioned in the paper.

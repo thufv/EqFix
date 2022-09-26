@@ -59,7 +59,7 @@ As demonstrated in [our data set file](Benchmarks/Full.json), this should be a J
 
 that consists of two fields:
 - `id` is an integer value that provides a file-wide unique ID
-- `examples` is a JSON array of input-output examples and each you have to provide the erroneous equation (`eq`), the error message (`err`) and the fixed equation (`fix`)
+- `examples` is a JSON array of input-output examples and for each, you have to provide the erroneous equation (`eq`), the error message (`err`), and the fixed equation (`fix`)
 
 The argument `<K>` for the option `-k` specifies to synthesize top-`<K>` programs (default 1).
 The argument `<N>` for the option `-n` specifies the number of examples used for synthesis in each example group (default 1).
