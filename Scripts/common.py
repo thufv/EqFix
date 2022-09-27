@@ -3,6 +3,7 @@ import re
 from typing import Any, List, Optional, Tuple
 
 DLL = 'EqFix.dll'
+DLL_DIR = '../EqFix/bin/Release/netcoreapp2.0'
 BENCHMARK = os.path.abspath('../Benchmarks/Full.json')
 
 INT_REGEX = re.compile(r'(?P<number>\d+) .+')
@@ -72,3 +73,8 @@ def pretty_matrix(matrix: list[list[Any]]):
     fmt = '\t'.join('{{:{}}}'.format(x) for x in lens)
     table = [fmt.format(*row) for row in s]
     print('\n'.join(table))
+
+def gen_csv(matrix: list[list[Any]], csv_file: str):
+    lines = [','.join([str(e) for e in row]) + '\n' for row in matrix]
+    with open(csv_file, 'w') as f:
+        f.writelines(lines)

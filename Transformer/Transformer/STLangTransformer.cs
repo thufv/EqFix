@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Reflection;
+using System.Diagnostics;
 using Microsoft.ProgramSynthesis;
 using Microsoft.ProgramSynthesis.AST;
 using Microsoft.ProgramSynthesis.Compiler;
@@ -11,8 +12,10 @@ using Microsoft.ProgramSynthesis.VersionSpace;
 using Microsoft.ProgramSynthesis.Learning;
 using Microsoft.ProgramSynthesis.Learning.Strategies;
 using Microsoft.ProgramSynthesis.Learning.Logging;
+using Microsoft.ProgramSynthesis.Features;
 using Microsoft.ProgramSynthesis.Utils;
 using EqFix.Lib.Transformer.StringLang;
+using EqFix.Lib.Logging;
 
 namespace EqFix.Lib.Transformer
 {
@@ -23,63 +26,101 @@ namespace EqFix.Lib.Transformer
     /// This class wraps some useful methods to interactive with the synthesizer.
     /// See the base class <see ref="TransformerExample"/> for the functionality of the methods.
     /// </summary>
-    public class STLangTransformer : StringTransformer
+    public static class STLangTransformer
     {
-        private SynthesisEngine _engine { get; set; }
+        private static Logger Log = Logger.Instance;
 
-        public STLangTransformer() : base()
+        private static SynthesisEngine _engine;
+
+        private static RankingScore _scorer;
+        
+        public static Grammar DSL;
+
+        public static Symbol InputSymbol;
+
+        public static void Init()
         {
-            // compile grammar
-            var grammar = LoadGrammar("StringLang.grammar",
-                CompilerReference.FromAssemblyFiles(typeof(Semantics).GetTypeInfo().Assembly,
-                                                    typeof(Record).GetTypeInfo().Assembly));
-            if (grammar == null) {
-                Log.Error("ST: Grammar not compiled.");
-                return;
+            if (DSL == null) { // not yet compiled
+                // compile grammar
+                DSL = LoadGrammar("StringLang.grammar",
+                    CompilerReference.FromAssemblyFiles(typeof(Semantics).GetTypeInfo().Assembly,
+                                                        typeof(Record).GetTypeInfo().Assembly));
+                if (DSL == null) {
+                    Log.Error("ST: DSL not compiled.");
+                    return;
+                }
+                
+                InputSymbol = DSL.InputSymbol; // set input symbol
             }
-            _inputSymbol = grammar.InputSymbol; // set input symbol
 
             // set up engine
-            var witnessFunctions = new WitnessFunctions(grammar);
-            _scorer = new RankingScore(grammar);
-            _engine = new SynthesisEngine(grammar, new SynthesisEngine.Config
+            var witnessFunctions = new WitnessFunctions(DSL);
+            _scorer = new RankingScore(DSL);
+            _engine = new SynthesisEngine(DSL, new SynthesisEngine.Config
             {
                 Strategies = new ISynthesisStrategy[]
                 {
-                    // new EnumerativeSynthesis(),
                     new DeductiveSynthesis(witnessFunctions)
                 },
-                UseThreads = false,
-                LogListener = new LogListener(LogInfo.Witness),
+                UseThreads = false
             });
 
-            Log.Debug("ST: EqFix synthesis engine is setup.");
+            Log.Debug("ST: STLang synthesis engine is setup.");
         }
 
-        override public object TransformInput(STInput input)
+        public static object TransformInput(STInput input)
         {
             return input.ToArray();
         }
 
-        override protected ProgramNode[] LearnPrograms(IEnumerable<STExample> examples, int k)
+        /// <summary>
+        /// Synthesize candidate programs by examples.
+        /// </summary>
+        /// <param name="k">Maximal number of candidate programs to be synthesized.
+        /// Default 3.</param>
+        /// <returns>The synthesized programs.</returns>
+        public static List<STProgram> Synthesize(IEnumerable<STExample> examples, int k = 1)
+        {
+            Log.Debug("ST examples: {0}",
+                      String.Concat(examples.Select(e => "\n" + e.ToString())));
+
+            // synthesis
+            var stopwatch = new Stopwatch();
+            stopwatch.Start();
+            ProgramNode[] programs = LearnPrograms(examples, k);
+            stopwatch.Stop();
+            Log.Info("ST synthesis time: {0} ms", stopwatch.Elapsed.Milliseconds);
+            if (!programs.Any()) {
+                Log.Error("ST synthesis failed: no program(s) synthesized.");
+            }
+
+            List<STProgram> progs = new List<STProgram>();
+            int rank = 0;
+            foreach (var programNode in programs) {
+                rank++;
+                progs.Add(new STProgram(programNode, rank, "STLang"));
+            }
+            return progs;
+        }
+
+        private static ProgramNode[] LearnPrograms(IEnumerable<STExample> examples, int k)
         {
             // examples
             var constraints = examples.ToDictionary(
-                e => State.CreateForLearning(_inputSymbol, TransformInput(e.input)),
+                e => State.CreateForLearning(InputSymbol, TransformInput(e.input)),
                 e => (object) e.output
             );
             Spec spec = new ExampleSpec(constraints);
 
             // learn
             ProgramSet consistentPrograms = _engine.LearnGrammar(spec);
-            _engine.Configuration.LogListener.SaveLogToXML("learning.log.xml");
             var programs = consistentPrograms.TopK(_scorer, k).Take(k).ToArray();
             Log.Debug("ST: {0} program(s) synthesized.", programs.Length);
             
             return programs;
         }
 
-        public static Grammar LoadGrammar(string grammarFile, IReadOnlyList<CompilerReference> assemblyReferences)
+        private static Grammar LoadGrammar(string grammarFile, IReadOnlyList<CompilerReference> assemblyReferences)
         {
             var compilationResult = DSLCompiler.Compile(new CompilerOptions() {
                 InputGrammarText = File.ReadAllText(grammarFile),

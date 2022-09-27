@@ -172,7 +172,12 @@ let showMap map =
     sprintf "{ %s }" (String.concat ",\n  "
         (List.map (fun (k, v) -> sprintf "%A -> %A" k v) (Map.toList map)))
 
+(* Iterator *)
 
+type Iterator<'Element> =
+    abstract HasCurrent: bool
+    abstract GetCurrent: 'Element
+    abstract MoveNext: unit -> unit
 
 open System.Diagnostics
 

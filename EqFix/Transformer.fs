@@ -1,7 +1,6 @@
 module EqFix.Transformer
 
 open EqFix.Lib.Transformer
-open EqFix.Util
 
 type TExample = string list * string
 
@@ -27,11 +26,11 @@ type SolverConfig = { maxK: int; solver: SolverName }
 
 // Internal wrapper of EqFix.Lib.Transformer.StringTransformer
 type Solver (config: SolverConfig) =
-    let st = StringTransformer.SetupST(config.solver.ToString())
+    let name = config.solver.ToString()
     member this.K = config.maxK
     member this.Solve (examples: TExample list): STVSA option =
-        let p = st.Synthesize(transformExamples examples, this.K) |> Seq.toList
+        let p = StringTransformer.Synthesize(name, transformExamples examples, this.K) |> Seq.toList
         if List.isEmpty p then None else Some p
     member this.SolveTop (examples: TExample list): ST option =
-        let p = st.Synthesize(transformExamples examples, this.K) |> Seq.toList
+        let p = StringTransformer.Synthesize(name, transformExamples examples, this.K) |> Seq.toList
         if List.isEmpty p then None else Some (List.head p)

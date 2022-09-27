@@ -1,24 +1,22 @@
-﻿<Project Sdk="Microsoft.NET.Sdk">
-
+<Project Sdk="Microsoft.NET.Sdk">
   <PropertyGroup>
     <OutputType>Exe</OutputType>
     <TargetFramework>netcoreapp2.0</TargetFramework>
   </PropertyGroup>
-
   <ItemGroup>
     <Compile Include="Util.fs" />
     <Compile Include="Extractor.fs" />
     <Compile Include="Transformer.fs" />
     <Compile Include="Synthesizer.fs" />
     <Compile Include="RuleLib.fs" />
+    <Compile Include="REPL.fs" />
+    <Compile Include="Bench.fs" />
     <Compile Include="Program.fs" />
   </ItemGroup>
-
   <ItemGroup>
     <PackageReference Include="FSharp.Data" Version="3.0.0-beta4" />
     <PackageReference Include="Argu" Version="5.1.0" />
     <PackageReference Include="FsPickler" Version="5.2.0" />
     <ProjectReference Include="..\Transformer\Transformer\Transformer.csproj" />
   </ItemGroup>
-
 </Project>

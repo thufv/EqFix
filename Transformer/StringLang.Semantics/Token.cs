@@ -1,4 +1,6 @@
 using System.Collections.Generic;
+using System.Xml.Linq;
+using System;
 
 namespace EqFix.Lib.Transformer.StringLang
 {
@@ -18,12 +20,14 @@ namespace EqFix.Lib.Transformer.StringLang
         public int Last { get; set; }
     }
 
-    public abstract class Token
+    public abstract class Token : ASTSerializable
     {
         public Token(string representation, double score) {
             Representation = representation;
             Score = score;
         }
+        
+        public abstract XElement serialize();
 
         public abstract Match[] FindMatches(string s);
 
@@ -48,6 +52,18 @@ namespace EqFix.Lib.Transformer.StringLang
         }
 
         private char _c;
+
+        override public XElement serialize() {
+            XElement xe = new XElement("TokenChar");
+            xe.SetAttributeValue("char", _c);
+            xe.SetAttributeValue("score", Score);
+            return xe;
+        }
+
+        public TokenChar(XElement xe) : this(
+            Char.Parse(xe.Attribute("char").Value),
+            Double.Parse(xe.Attribute("score").Value)) {
+        }
 
         override public bool BoundedHasMatch(string s, int bound, int target) {
             for (int i = target - bound; i <= target + bound; i++) {

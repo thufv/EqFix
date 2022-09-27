@@ -195,3 +195,9 @@ __pycache__/
 
 # .NET version
 global.json
+
+# Others
+Scripts/cmd_*.txt
+Scripts/*.csv
+Scripts/*.eps
+.fake
