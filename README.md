@@ -1,5 +1,10 @@
 # EqFix
 
+[![Build][build-badge]][build-link]
+
+[build-badge]: https://github.com/thufv/EqFix/actions/workflows/CI.yml/badge.svg?branch=main
+[build-link]: https://github.com/thufv/EqFix/actions/workflows/CI.yml
+
 Repairing LaTeX equations by examples.
 
 ## System Requirements
